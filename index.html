@@ -1572,6 +1572,158 @@
       }
     }
 
+
+
+    /* =========================================================
+       FINAL PHONE FIX — light 3D + full content visibility
+       This keeps mobile smooth but does not remove all 3D vibe.
+       ========================================================= */
+    @media (max-width: 760px) {
+      /* Important: on phones content should never stay hidden if JS/network is slow. */
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      /* Keep a small 3D hero instead of hiding everything. */
+      .stage-wrap {
+        min-height: 370px;
+        perspective: 900px;
+        transform-style: preserve-3d;
+      }
+
+      .stage-glow,
+      .orbit,
+      .float-card {
+        display: block !important;
+      }
+
+      .stage-glow {
+        inset: 22%;
+        opacity: 0.75;
+        filter: blur(10px);
+        animation: breathe 5.5s ease-in-out infinite alternate;
+      }
+
+      .orbit {
+        inset: 74px 42px;
+        opacity: 0.55;
+        animation: orbitSpin 28s linear infinite;
+      }
+
+      .cube {
+        width: 118px;
+        height: 118px;
+        animation: cubeSpin 16s linear infinite !important;
+        will-change: transform;
+      }
+
+      .cube-face {
+        font-size: 0.95rem;
+        background: linear-gradient(135deg, rgba(97, 233, 255, 0.16), rgba(166, 108, 255, 0.09));
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(59px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(59px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(59px); }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(59px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(59px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(59px); }
+
+      .float-card {
+        width: 132px;
+        padding: 11px 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.085);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        will-change: transform;
+      }
+
+      .float-card b { font-size: 0.78rem; }
+      .float-card span { font-size: 0.67rem; }
+
+      .float-card.one {
+        left: 0;
+        top: 26px;
+        animation: phoneFloatOne 6s ease-in-out infinite;
+      }
+
+      .float-card.two {
+        right: 0;
+        top: 88px;
+        animation: phoneFloatTwo 6.4s ease-in-out infinite;
+      }
+
+      .float-card.three {
+        left: 8px;
+        bottom: 78px;
+        animation: phoneFloatThree 6.8s ease-in-out infinite;
+      }
+
+      .float-card.four {
+        right: 10px;
+        bottom: 30px;
+        animation: phoneFloatFour 7.2s ease-in-out infinite;
+      }
+
+      /* Keep the flow section visible and premium on phone, without heavy scroll math. */
+      .motion-bg-title {
+        display: block !important;
+        font-size: 4.6rem;
+        opacity: 0.045;
+      }
+
+      .motion-line {
+        display: block !important;
+        top: 52%;
+        opacity: 0.35;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        transform: none !important;
+        animation: phoneSoftLift 5.8s ease-in-out infinite;
+      }
+
+      .motion-card:nth-child(2) { animation-delay: 0.5s; }
+      .motion-card:nth-child(3) { animation-delay: 1s; }
+
+      .service-card {
+        min-height: auto;
+      }
+    }
+
+    @keyframes phoneFloatOne {
+      0%, 100% { transform: rotateY(-12deg) rotateX(6deg) translate3d(0, 0, 45px); }
+      50% { transform: rotateY(-12deg) rotateX(6deg) translate3d(8px, -12px, 58px); }
+    }
+
+    @keyframes phoneFloatTwo {
+      0%, 100% { transform: rotateY(14deg) rotateX(-5deg) translate3d(0, 0, 52px); }
+      50% { transform: rotateY(14deg) rotateX(-5deg) translate3d(-10px, 10px, 65px); }
+    }
+
+    @keyframes phoneFloatThree {
+      0%, 100% { transform: rotateY(12deg) rotateX(5deg) translate3d(0, 0, 48px); }
+      50% { transform: rotateY(12deg) rotateX(5deg) translate3d(9px, 10px, 62px); }
+    }
+
+    @keyframes phoneFloatFour {
+      0%, 100% { transform: rotateY(-14deg) rotateX(-4deg) translate3d(0, 0, 45px); }
+      50% { transform: rotateY(-14deg) rotateX(-4deg) translate3d(-9px, -10px, 60px); }
+    }
+
+    @keyframes phoneSoftLift {
+      0%, 100% { transform: translateY(0) !important; }
+      50% { transform: translateY(-8px) !important; }
+    }
+
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
