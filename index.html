@@ -1724,6 +1724,223 @@
     }
 
 
+
+
+    /* =========================================================
+       MOBILE REAL 3D FIX
+       These rules keep the phone version smooth but make the 3D
+       visible in the exact sections people see while scrolling.
+       ========================================================= */
+    @media (max-width: 760px) {
+      body {
+        background:
+          radial-gradient(circle at 20% 4%, rgba(97, 233, 255, 0.18), transparent 24rem),
+          radial-gradient(circle at 90% 22%, rgba(166, 108, 255, 0.16), transparent 24rem),
+          radial-gradient(circle at 40% 92%, rgba(77, 124, 255, 0.14), transparent 24rem),
+          var(--bg);
+      }
+
+      .hero-grid,
+      .services-grid,
+      .process-grid,
+      .motion-stage {
+        perspective: 900px;
+        transform-style: preserve-3d;
+      }
+
+      /* Hero 3D should be obvious on phone, not hidden or flat. */
+      .stage-wrap {
+        min-height: 430px !important;
+        transform: rotateX(8deg) rotateY(-7deg);
+        animation: mobileStageBreath 7s ease-in-out infinite;
+      }
+
+      .cube {
+        width: 132px !important;
+        height: 132px !important;
+        filter: drop-shadow(0 26px 42px rgba(97, 233, 255, 0.20));
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(66px) !important; }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(66px) !important; }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(66px) !important; }
+
+      .orbit {
+        inset: 62px 28px !important;
+        opacity: 0.8 !important;
+      }
+
+      .float-card.one { transform: rotateY(-26deg) rotateX(10deg) translate3d(0, 0, 76px) !important; }
+      .float-card.two { transform: rotateY(24deg) rotateX(-8deg) translate3d(0, 0, 88px) !important; }
+      .float-card.three { transform: rotateY(20deg) rotateX(10deg) translate3d(0, 0, 72px) !important; }
+      .float-card.four { transform: rotateY(-24deg) rotateX(-8deg) translate3d(0, 0, 78px) !important; }
+
+      /* Services: keep cards usable, but add visible depth. */
+      .service-card {
+        transform-style: preserve-3d !important;
+        box-shadow:
+          0 18px 42px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .service-card:nth-child(odd) {
+        transform: perspective(850px) rotateY(-4deg) rotateX(2deg) translateZ(0) !important;
+      }
+
+      .service-card:nth-child(even) {
+        transform: perspective(850px) rotateY(4deg) rotateX(2deg) translateZ(0) !important;
+      }
+
+      .service-card::after {
+        opacity: 0.55 !important;
+      }
+
+      .service-top,
+      .service-card h3,
+      .service-card p,
+      .click-note {
+        transform: translateZ(22px) !important;
+      }
+
+      /* QR should look premium but same size as other services. */
+      .qr-mini {
+        transform: translateZ(34px) rotateX(4deg);
+        box-shadow: 0 18px 35px rgba(97, 233, 255, 0.12);
+      }
+
+      /* The Smart Website Flow section now moves with scroll on phone too. */
+      .motion-lab {
+        min-height: 1180px !important;
+      }
+
+      .motion-sticky {
+        position: sticky !important;
+        top: 74px !important;
+        min-height: 720px !important;
+        overflow: hidden;
+      }
+
+      .motion-content {
+        display: block !important;
+        padding-top: 34px;
+      }
+
+      .motion-copy {
+        transform: translateY(calc(var(--p, 0) * -26px)) !important;
+      }
+
+      .motion-stage {
+        height: 420px !important;
+        margin-top: 26px;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        width: min(300px, 82vw) !important;
+        left: 50% !important;
+        top: 50% !important;
+        animation: none !important;
+        box-shadow:
+          0 25px 55px rgba(0, 0, 0, 0.42),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        background: rgba(255, 255, 255, 0.075) !important;
+        border-color: rgba(97, 233, 255, 0.18) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
+
+      .motion-card:nth-child(1) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(-54px + var(--p, 0) * 36px))
+          translateY(calc(-122px + var(--p, 0) * -22px))
+          translateZ(calc(35px + var(--p, 0) * 45px))
+          rotateY(calc(-18deg + var(--p, 0) * 18deg))
+          rotateX(8deg) !important;
+      }
+
+      .motion-card:nth-child(2) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(14px + var(--p, 0) * -28px))
+          translateY(calc(2px + var(--p, 0) * -34px))
+          translateZ(calc(95px + var(--p, 0) * 42px))
+          rotateY(calc(8deg + var(--p, 0) * -16deg))
+          rotateX(-4deg) !important;
+      }
+
+      .motion-card:nth-child(3) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(58px + var(--p, 0) * -38px))
+          translateY(calc(126px + var(--p, 0) * 18px))
+          translateZ(calc(30px + var(--p, 0) * 40px))
+          rotateY(calc(18deg + var(--p, 0) * -18deg))
+          rotateX(-7deg) !important;
+      }
+
+      .motion-line {
+        display: block !important;
+        bottom: 28px !important;
+        top: auto !important;
+        opacity: 0.8 !important;
+      }
+
+      .motion-line span {
+        width: calc(var(--p, 0) * 100%) !important;
+      }
+
+      /* Process cards in screenshot should not look flat. */
+      .process-grid {
+        perspective: 850px !important;
+      }
+
+      .process-card {
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d !important;
+        box-shadow:
+          0 20px 44px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .process-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(120deg, transparent 16%, rgba(97, 233, 255, 0.18), transparent 42%);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .process-card:nth-child(odd) {
+        transform: perspective(850px) rotateY(-4deg) rotateX(2deg) !important;
+      }
+
+      .process-card:nth-child(even) {
+        transform: perspective(850px) rotateY(4deg) rotateX(2deg) !important;
+      }
+
+      .process-card .num,
+      .process-card h3,
+      .process-card p {
+        position: relative;
+        z-index: 1;
+        transform: translateZ(20px);
+      }
+    }
+
+    @keyframes mobileStageBreath {
+      0%, 100% { transform: rotateX(8deg) rotateY(-7deg) translateY(0); }
+      50% { transform: rotateX(4deg) rotateY(7deg) translateY(-8px); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -2309,10 +2526,5252 @@
     const motionSection = document.querySelector(".motion-lab");
 
     function updateMotionProgress() {
-      if (!motionSection || window.innerWidth < 900) return;
+      if (!motionSection) return;
 
       const rect = motionSection.getBoundingClientRect();
-      const scrollable = rect.height - window.innerHeight;
+      const scrollable = Math.max(1, rect.height - window.innerHeight);
+      const rawProgress = Math.abs(rect.top) / scrollable;
+      const progress = Math.min(1, Math.max(0, rawProgress));
+
+      motionSection.style.setProperty("--p", progress.toFixed(3));
+    }
+
+    window.addEventListener("scroll", updateMotionProgress, { passive: true });
+    window.addEventListener("resize", updateMotionProgress);
+    updateMotionProgress();
+
+    /* No-reload service detail modal */
+    const serviceContent = {
+      business: {
+        title: "Business Website",
+        text: "A clean and professional website for local businesses that need trust, visibility and easy customer contact.",
+        points: ["Home page", "About section", "Services section", "Contact buttons", "Google Maps", "Mobile-first design"]
+      },
+      lead: {
+        title: "Lead & Contact Page",
+        text: "A focused page that guides visitors toward WhatsApp, calls, enquiry forms and map visits.",
+        points: ["WhatsApp CTA", "Call button", "Enquiry form", "Offer section", "Map link", "Basic analytics ready"]
+      },
+      qr: {
+        title: "QR Smart Website",
+        text: "A clean scan-to-open website page for posters, shop counters, business cards and catalogs. One QR can open your contact, location, offers, catalog or latest updates.",
+        points: ["QR-ready page", "Fast mobile opening", "WhatsApp button", "Google Maps", "Offer/catalog section", "Easy sharing"]
+      },
+      catalog: {
+        title: "Product / Service Catalog",
+        text: "A simple digital catalog for businesses that want to show services, products, packages, photos or pricing online.",
+        points: ["Category layout", "Pricing cards", "Image area", "QR share", "Easy updates", "Organized layout"]
+      },
+      redesign: {
+        title: "Website Redesign",
+        text: "Improve an old website with better UI, readability, mobile experience and clearer customer journey.",
+        points: ["Modern UI", "Better spacing", "Mobile fixes", "Speed improvement", "Content cleanup", "CTA improvement"]
+      }
+    };
+
+    const modal = document.getElementById("serviceModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalList = document.getElementById("modalList");
+    const closeModal = document.getElementById("closeModal");
+
+    document.querySelectorAll("[data-service]").forEach((card) => {
+      card.addEventListener("click", () => {
+        const item = serviceContent[card.dataset.service];
+
+        modalTitle.textContent = item.title;
+        modalText.textContent = item.text;
+        modalList.innerHTML = item.points.map((point) => `<span>${point}</span>`).join("");
+
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function hideModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    closeModal.addEventListener("click", hideModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) hideModal();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") hideModal();
+    });
+
+    /* WhatsApp message from form */
+    document.getElementById("sendWhatsapp").addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim();
+      const business = document.getElementById("business").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const text = encodeURIComponent(
+        `Hello Lalit, I want a website.\n\nName: ${name}\nBusiness: ${business}\nMessage: ${message}`
+      );
+
+      window.open(`https://wa.me/919259350982?text=${text}`, "_blank");
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lalit Web Studio | Modern Business Websites</title>
+  <meta name="description" content="Lalit Web Studio builds modern, mobile-friendly websites for local businesses, service brands and growing businesses." />
+
+  <!-- Readable premium fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       LALIT WEB STUDIO — PREMIUM 3D PORTFOLIO
+       Clean, readable, human-like code.
+       No React. No Three.js. No heavy library.
+       ========================================================= */
+
+    :root {
+      --bg: #050712;
+      --bg-soft: #090d1b;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-strong: rgba(255, 255, 255, 0.10);
+      --line: rgba(255, 255, 255, 0.12);
+      --line-strong: rgba(99, 233, 255, 0.35);
+      --text: #eef4ff;
+      --soft: #aab7ce;
+      --muted: #71809b;
+      --cyan: #61e9ff;
+      --blue: #4d7cff;
+      --violet: #a66cff;
+      --green: #52ffa8;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+      --radius: 24px;
+      --max: 1180px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-head: "Sora", sans-serif;
+      --font-body: "Inter", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(77, 124, 255, 0.20), transparent 34rem),
+        radial-gradient(circle at 75% 12%, rgba(166, 108, 255, 0.16), transparent 32rem),
+        radial-gradient(circle at 50% 90%, rgba(97, 233, 255, 0.10), transparent 34rem),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at 50% 20%, black, transparent 78%);
+    }
+
+    /* Big soft background watermark */
+    body::after {
+      content: "LWS";
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) rotate(-8deg);
+      color: rgba(255, 255, 255, 0.025);
+      font-family: var(--font-head);
+      font-size: clamp(10rem, 32vw, 30rem);
+      font-weight: 800;
+      letter-spacing: -0.14em;
+      white-space: nowrap;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 44px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: var(--cyan);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      box-shadow: 0 0 18px rgba(97, 233, 255, 0.9);
+    }
+
+    .title {
+      max-width: 720px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+    }
+
+    .title span,
+    .gradient-text {
+      background: linear-gradient(110deg, #ffffff, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 560px;
+      color: var(--soft);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+    }
+
+    /* ------------------- Navigation ------------------- */
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      width: min(var(--max), calc(100% - 32px));
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(5, 7, 18, 0.62);
+      backdrop-filter: blur(22px);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding-left: 8px;
+      font-family: var(--font-head);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #051018;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      box-shadow: 0 0 28px rgba(97, 233, 255, 0.35);
+      font-size: 0.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--soft);
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: 0.25s var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-cta {
+      padding: 10px 18px !important;
+      color: #061019 !important;
+      background: linear-gradient(135deg, var(--cyan), var(--green)) !important;
+      box-shadow: 0 10px 34px rgba(97, 233, 255, 0.22);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ------------------- Hero ------------------- */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 0 80px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 10px 14px;
+      border: 1px solid rgba(97, 233, 255, 0.24);
+      border-radius: 999px;
+      background: rgba(97, 233, 255, 0.07);
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .portfolio-badge {
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(166, 108, 255, 0.30);
+      background: rgba(166, 108, 255, 0.10);
+      color: #d9ccff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 0 30px rgba(166, 108, 255, 0.12);
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 16px var(--green);
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      50% { opacity: 0.35; transform: scale(0.82); }
+    }
+
+    .hero h1 {
+      max-width: 660px;
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 8.5vw, 6.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+    }
+
+    .hero h1 .small-line {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--soft);
+      font-size: clamp(1.45rem, 3.4vw, 2.65rem);
+      letter-spacing: -0.05em;
+    }
+
+    .hero-text {
+      max-width: 590px;
+      margin-top: 24px;
+      color: var(--soft);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      overflow: hidden;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: #061019;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 18px 50px rgba(97, 233, 255, 0.26);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 22px 70px rgba(97, 233, 255, 0.38);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .micro-trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .micro-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .micro-card b {
+      display: block;
+      color: white;
+      font-size: 0.98rem;
+    }
+
+    .micro-card span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ------------------- Real 3D visual stage ------------------- */
+
+    .stage-wrap {
+      position: relative;
+      min-height: 560px;
+      perspective: 1100px;
+    }
+
+    .stage-glow {
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(97, 233, 255, 0.18), transparent 65%);
+      filter: blur(12px);
+      animation: breathe 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes breathe {
+      from { transform: scale(0.92); opacity: 0.75; }
+      to { transform: scale(1.06); opacity: 1; }
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 62px;
+      transform-style: preserve-3d;
+      animation: orbitSpin 18s linear infinite;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(97, 233, 255, 0.25);
+      border-radius: 50%;
+      box-shadow: inset 0 0 50px rgba(97, 233, 255, 0.06);
+    }
+
+    .orbit::after {
+      transform: rotateX(68deg);
+      border-color: rgba(166, 108, 255, 0.25);
+    }
+
+    @keyframes orbitSpin {
+      to { transform: rotateY(360deg) rotateX(10deg); }
+    }
+
+    .cube {
+      position: absolute;
+      left: 50%;
+      top: 49%;
+      width: 180px;
+      height: 180px;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%) rotateX(-18deg) rotateY(35deg);
+      animation: cubeSpin 13s linear infinite;
+    }
+
+    .cube-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(135deg, rgba(97, 233, 255, 0.17), rgba(166, 108, 255, 0.10));
+      backdrop-filter: blur(16px);
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.05);
+    }
+
+    .cube-face:nth-child(1) { transform: translateZ(90px); }
+    .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(90px); }
+    .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(90px); }
+    .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(90px); }
+    .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(90px); }
+    .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(90px); }
+
+    @keyframes cubeSpin {
+      to { transform: translate(-50%, -50%) rotateX(342deg) rotateY(395deg); }
+    }
+
+    .float-card {
+      position: absolute;
+      width: 188px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      transition: transform 0.2s var(--ease);
+    }
+
+    .float-card b {
+      display: block;
+      color: white;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+
+    .float-card span {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .float-card.one {
+      left: 0;
+      top: 50px;
+      transform: rotateY(-18deg) rotateX(8deg) translateZ(70px);
+      animation: floatA 5s ease-in-out infinite;
+    }
+
+    .float-card.two {
+      right: 8px;
+      top: 118px;
+      transform: rotateY(20deg) rotateX(-6deg) translateZ(90px);
+      animation: floatB 5.4s ease-in-out infinite;
+    }
+
+    .float-card.three {
+      left: 38px;
+      bottom: 100px;
+      transform: rotateY(22deg) rotateX(5deg) translateZ(90px);
+      animation: floatC 5.8s ease-in-out infinite;
+    }
+
+    .float-card.four {
+      right: 54px;
+      bottom: 38px;
+      transform: rotateY(-22deg) rotateX(-4deg) translateZ(70px);
+      animation: floatD 6.2s ease-in-out infinite;
+    }
+
+    @keyframes floatA { 50% { transform: rotateY(-18deg) rotateX(8deg) translate3d(16px, -18px, 90px); } }
+    @keyframes floatB { 50% { transform: rotateY(20deg) rotateX(-6deg) translate3d(-16px, 18px, 110px); } }
+    @keyframes floatC { 50% { transform: rotateY(22deg) rotateX(5deg) translate3d(20px, 14px, 120px); } }
+    @keyframes floatD { 50% { transform: rotateY(-22deg) rotateX(-4deg) translate3d(-22px, -16px, 98px); } }
+
+    /* ------------------- Cards and grids ------------------- */
+
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: 0.35s var(--ease);
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 20%), rgba(97, 233, 255, 0.16), transparent 34%);
+      pointer-events: none;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-card {
+      padding: 34px;
+    }
+
+    .about-card h3 {
+      margin-bottom: 16px;
+      font-family: var(--font-head);
+      font-size: 1.65rem;
+      letter-spacing: -0.04em;
+    }
+
+    .about-card p {
+      color: var(--soft);
+      margin-bottom: 16px;
+    }
+
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .identity-box {
+      min-height: 142px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .identity-box .icon {
+      font-size: 1.65rem;
+    }
+
+    .identity-box b {
+      display: block;
+      color: white;
+      font-size: 1.05rem;
+      margin-top: 18px;
+    }
+
+    .identity-box span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      perspective: 1200px;
+    }
+
+    .service-card {
+      min-height: 286px;
+      padding: 28px;
+      overflow: hidden;
+      isolation: isolate;
+      text-align: left;
+      color: inherit;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition:
+        transform 0.32s var(--ease),
+        border-color 0.32s var(--ease),
+        box-shadow 0.32s var(--ease),
+        background 0.32s var(--ease);
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -1;
+      opacity: 0;
+      border-radius: inherit;
+      background:
+        linear-gradient(120deg, transparent 15%, rgba(97, 233, 255, 0.26), transparent 42%),
+        radial-gradient(circle at 20% 20%, rgba(166, 108, 255, 0.18), transparent 32%),
+        radial-gradient(circle at 80% 0%, rgba(97, 233, 255, 0.13), transparent 32%);
+      transition: opacity 0.35s var(--ease);
+    }
+
+    .service-card:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38), 0 0 34px rgba(97, 233, 255, 0.10);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-card.reveal.show {
+      animation: servicePop 0.85s var(--ease) both;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    @keyframes servicePop {
+      0% {
+        opacity: 0;
+        transform: translateY(34px) rotateX(10deg) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+      }
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      transform: translateZ(34px);
+    }
+
+    .service-number {
+      color: var(--cyan);
+      font-family: var(--font-head);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .service-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border: 1px solid rgba(97, 233, 255, 0.18);
+      border-radius: 18px;
+      background: rgba(97, 233, 255, 0.11);
+      font-size: 1.55rem;
+      box-shadow: inset 0 0 22px rgba(97, 233, 255, 0.05);
+      transition: transform 0.35s var(--ease), background 0.35s var(--ease);
+    }
+
+    .service-card:hover .service-icon {
+      transform: translateY(-3px) rotate(-4deg) scale(1.06);
+      background: rgba(97, 233, 255, 0.16);
+    }
+
+    .service-card h3 {
+      margin: 22px 0 10px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1.22rem;
+      letter-spacing: -0.04em;
+      transform: translateZ(28px);
+    }
+
+    .service-card p {
+      color: var(--soft);
+      font-size: 0.94rem;
+      transform: translateZ(18px);
+    }
+
+    .click-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: var(--cyan);
+      font-size: 0.82rem;
+      font-weight: 800;
+      transform: translateZ(28px);
+    }
+
+    .service-card:hover .click-note {
+      animation: arrowNudge 0.9s var(--ease) infinite alternate;
+    }
+
+    @keyframes arrowNudge {
+      from { transform: translateZ(28px) translateX(0); }
+      to { transform: translateZ(28px) translateX(7px); }
+    }
+
+    /* QR card stays the same size as other services.
+       The small QR preview is only a visual proof that QR pages can be made. */
+    .qr-service-card {
+      min-height: 315px;
+    }
+
+    .qr-mini {
+      position: relative;
+      width: 104px;
+      height: 104px;
+      margin-top: 18px;
+      padding: 10px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(97, 233, 255, 0.22);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.20);
+      transform: translateZ(24px);
+    }
+
+    .qr-mini-grid {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+
+    .qr-mini-grid span {
+      border-radius: 3px;
+      background: #051018;
+      opacity: 0.18;
+    }
+
+    .qr-mini-grid span:nth-child(1),
+    .qr-mini-grid span:nth-child(2),
+    .qr-mini-grid span:nth-child(3),
+    .qr-mini-grid span:nth-child(8),
+    .qr-mini-grid span:nth-child(10),
+    .qr-mini-grid span:nth-child(15),
+    .qr-mini-grid span:nth-child(16),
+    .qr-mini-grid span:nth-child(17),
+    .qr-mini-grid span:nth-child(22),
+    .qr-mini-grid span:nth-child(24),
+    .qr-mini-grid span:nth-child(28),
+    .qr-mini-grid span:nth-child(31),
+    .qr-mini-grid span:nth-child(33),
+    .qr-mini-grid span:nth-child(36),
+    .qr-mini-grid span:nth-child(39),
+    .qr-mini-grid span:nth-child(42),
+    .qr-mini-grid span:nth-child(44),
+    .qr-mini-grid span:nth-child(46),
+    .qr-mini-grid span:nth-child(47),
+    .qr-mini-grid span:nth-child(49) {
+      opacity: 1;
+    }
+
+    .qr-scan-line {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      top: 10px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      box-shadow: 0 0 18px rgba(97, 233, 255, 0.9);
+      animation: qrLineMove 2.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes qrLineMove {
+      from { transform: translateY(0); opacity: 0.72; }
+      to { transform: translateY(76px); opacity: 1; }
+    }
+
+    /* ------------------- Skills Highlight ------------------- */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .skill-focus-card {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 360px;
+      overflow: hidden;
+    }
+
+    .skill-focus-card h3 {
+      max-width: 460px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .skill-focus-card p {
+      margin-top: 18px;
+      color: var(--soft);
+      max-width: 520px;
+    }
+
+    .skill-orbit {
+      position: relative;
+      width: 230px;
+      height: 230px;
+      margin: 34px auto 0;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(97, 233, 255, 0.16);
+      background: radial-gradient(circle, rgba(97, 233, 255, 0.12), transparent 68%);
+      animation: softSpin 15s linear infinite;
+    }
+
+    .skill-orbit::before,
+    .skill-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+      border: 1px dashed rgba(255, 255, 255, 0.16);
+    }
+
+    .skill-orbit::before { inset: 28px; }
+    .skill-orbit::after { inset: 58px; }
+
+    .skill-orbit b {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-head);
+      color: white;
+      letter-spacing: -0.04em;
+      animation: reverseSpin 15s linear infinite;
+    }
+
+    @keyframes softSpin { to { transform: rotate(360deg); } }
+    @keyframes reverseSpin { to { transform: rotate(-360deg); } }
+
+    .skill-list-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      min-height: 170px;
+      padding: 24px;
+      overflow: hidden;
+      transition: transform 0.32s var(--ease), border-color 0.32s var(--ease), box-shadow 0.32s var(--ease);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--line-strong);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .skill-card .skill-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      background: rgba(97, 233, 255, 0.10);
+      border: 1px solid rgba(97, 233, 255, 0.16);
+      font-size: 1.25rem;
+    }
+
+    .skill-card h3 {
+      color: white;
+      margin-bottom: 8px;
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      letter-spacing: -0.04em;
+    }
+
+    .skill-card p {
+      color: var(--soft);
+      font-size: 0.92rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .skill-tags span {
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+
+    /* ------------------- Signature scroll 3D section ------------------- */
+
+
+    .motion-lab {
+      min-height: 260vh;
+      padding: 0;
+    }
+
+    .motion-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .motion-bg-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255, 255, 255, 0.035);
+      font-family: var(--font-head);
+      font-size: clamp(5rem, 18vw, 16rem);
+      font-weight: 800;
+      letter-spacing: -0.1em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .motion-content {
+      width: min(var(--max), calc(100% - 40px));
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 44px;
+      align-items: center;
+      perspective: 1200px;
+    }
+
+    .motion-copy {
+      transform: translateY(calc(var(--p, 0) * -28px));
+    }
+
+    .motion-copy .lead {
+      margin-top: 16px;
+    }
+
+    .motion-stage {
+      position: relative;
+      height: 520px;
+      transform-style: preserve-3d;
+    }
+
+    .motion-card {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(330px, 82vw);
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      transition: border-color 0.25s var(--ease);
+    }
+
+    .motion-card:hover {
+      border-color: var(--line-strong);
+    }
+
+    .motion-card b {
+      display: block;
+      margin: 10px 0 8px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      letter-spacing: -0.04em;
+    }
+
+    .motion-card span {
+      color: var(--soft);
+      font-size: 0.9rem;
+    }
+
+    .motion-card:nth-child(1) {
+      transform:
+        translate(-50%, -50%)
+        translateX(calc(-260px + var(--p, 0) * 170px))
+        translateY(calc(-90px + var(--p, 0) * -20px))
+        translateZ(calc(40px + var(--p, 0) * 90px))
+        rotateY(calc(-24deg + var(--p, 0) * 32deg))
+        rotateX(8deg);
+    }
+
+    .motion-card:nth-child(2) {
+      transform:
+        translate(-50%, -50%)
+        translateX(calc(20px + var(--p, 0) * -110px))
+        translateY(calc(-10px + var(--p, 0) * -80px))
+        translateZ(calc(120px + var(--p, 0) * 40px))
+        rotateY(calc(10deg + var(--p, 0) * -18deg))
+        rotateX(-4deg);
+    }
+
+    .motion-card:nth-child(3) {
+      transform:
+        translate(-50%, -50%)
+        translateX(calc(250px + var(--p, 0) * -170px))
+        translateY(calc(80px + var(--p, 0) * 28px))
+        translateZ(calc(10px + var(--p, 0) * 100px))
+        rotateY(calc(26deg + var(--p, 0) * -36deg))
+        rotateX(-7deg);
+    }
+
+    .motion-line {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: 42px;
+      height: 3px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .motion-line span {
+      display: block;
+      width: calc(var(--p, 0) * 100%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      box-shadow: 0 0 22px rgba(97, 233, 255, 0.7);
+    }
+
+    /* ------------------- Process ------------------- */
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .process-card {
+      padding: 26px;
+    }
+
+    .process-card .num {
+      color: rgba(97, 233, 255, 0.22);
+      font-family: var(--font-head);
+      font-size: 3.2rem;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .process-card h3 {
+      margin: 20px 0 10px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .process-card p {
+      color: var(--soft);
+      font-size: 0.9rem;
+    }
+
+    /* ------------------- Contact ------------------- */
+
+    .contact-shell {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-copy,
+    .contact-form {
+      padding: 34px;
+    }
+
+    .contact-copy h2 {
+      margin-bottom: 18px;
+    }
+
+    .contact-copy p {
+      color: var(--soft);
+      margin-bottom: 24px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--soft);
+    }
+
+    .contact-row .mini-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(97, 233, 255, 0.09);
+      border: 1px solid rgba(97, 233, 255, 0.16);
+    }
+
+    .field {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      color: var(--soft);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      color: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      outline: none;
+      padding: 14px 16px;
+      transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+    }
+
+    textarea {
+      min-height: 126px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    footer {
+      padding: 34px 0 42px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    /* ------------------- Modal: no reload detail view ------------------- */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(18px);
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-panel {
+      width: min(720px, 100%);
+      padding: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(97, 233, 255, 0.14), transparent 40%),
+        rgba(8, 12, 26, 0.92);
+      box-shadow: var(--shadow);
+      animation: modalIn 0.45s var(--ease) both;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.96) rotateX(10deg); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .modal-panel h3 {
+      margin-bottom: 12px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: -0.06em;
+    }
+
+    .modal-panel p {
+      color: var(--soft);
+      margin-bottom: 18px;
+    }
+
+    .modal-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .modal-list span {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-close {
+      min-width: 130px;
+    }
+
+    /* ------------------- Reveal and pointer spotlight ------------------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+
+    .spotlight {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(97, 233, 255, 0.10), transparent 24rem);
+    }
+
+
+    /* ------------------- Performance fixes ------------------- */
+
+    /* Helps the browser skip painting sections until they are near the screen. */
+    .section {
+      content-visibility: auto;
+      contain-intrinsic-size: 760px;
+    }
+
+    /* Keep the hero always visible because it is the first screen. */
+    .hero {
+      content-visibility: visible;
+    }
+
+    /* ------------------- Responsive ------------------- */
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .skills-grid,
+      .motion-content,
+      .contact-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .stage-wrap {
+        min-height: 480px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-top {
+        display: block;
+      }
+
+      .section-top .lead {
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        top: 78px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(5, 7, 18, 0.94);
+        backdrop-filter: blur(22px);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.7rem, 15vw, 4.6rem);
+      }
+
+      .stage-wrap {
+        min-height: 420px;
+      }
+
+      .orbit {
+        inset: 42px;
+      }
+
+      .cube {
+        width: 128px;
+        height: 128px;
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(64px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(64px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(64px); }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(64px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(64px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(64px); }
+
+      .float-card {
+        width: 158px;
+        padding: 13px;
+      }
+
+      .micro-trust,
+      .identity-grid,
+      .services-grid,
+      .skill-list-grid,
+      .process-grid,
+      .form-actions,
+      .modal-list {
+        grid-template-columns: 1fr;
+      }
+
+      .motion-lab {
+        min-height: auto;
+        padding: 90px 0;
+      }
+
+      .motion-sticky {
+        position: relative;
+        height: auto;
+      }
+
+      .motion-stage {
+        height: auto;
+        display: grid;
+        gap: 16px;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        transform: none;
+      }
+
+      .motion-bg-title,
+      .motion-line {
+        display: none;
+      }
+    }
+
+
+    /* Phone / old-device optimization:
+       On mobile we keep the premium look, but remove heavy effects that can cause lag. */
+    @media (max-width: 760px) {
+      body {
+        background:
+          radial-gradient(circle at top, rgba(77, 124, 255, 0.16), transparent 28rem),
+          var(--bg);
+      }
+
+      body::before {
+        display: none;
+      }
+
+      body::after {
+        font-size: 10rem;
+        opacity: 0.55;
+      }
+
+      .spotlight {
+        display: none;
+      }
+
+      .section {
+        padding: 78px 0;
+        content-visibility: visible;
+      }
+
+      .glass-card,
+      .nav,
+      .nav-links,
+      .modal,
+      .modal-panel,
+      .cube-face,
+      .motion-card {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.075);
+      }
+
+      .stage-wrap {
+        min-height: 300px;
+      }
+
+      .stage-glow,
+      .orbit,
+      .float-card {
+        display: none;
+      }
+
+      .cube {
+        width: 118px;
+        height: 118px;
+        animation: none !important;
+        transform: translate(-50%, -50%) rotateX(-14deg) rotateY(28deg);
+      }
+
+      .cube-face {
+        font-size: 1rem;
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(59px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(59px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(59px); }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(59px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(59px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(59px); }
+
+      .service-card,
+      .skill-card,
+      .process-card,
+      .identity-box {
+        will-change: auto;
+        transform: none !important;
+      }
+
+      .service-card.reveal.show {
+        animation: none;
+      }
+
+      .service-card:hover,
+      .skill-card:hover,
+      .btn:hover {
+        transform: none;
+      }
+
+      .skill-orbit {
+        animation: none !important;
+      }
+
+      .skill-orbit b {
+        animation: none !important;
+      }
+
+      .qr-scan-line {
+        animation-duration: 3.6s;
+      }
+
+      .motion-copy {
+        transform: none;
+      }
+
+      .motion-card {
+        box-shadow: 0 16px 45px rgba(0, 0, 0, 0.26);
+      }
+
+      .reveal {
+        transition-duration: 0.45s;
+      }
+    }
+
+
+
+    /* =========================================================
+       FINAL PHONE FIX — light 3D + full content visibility
+       This keeps mobile smooth but does not remove all 3D vibe.
+       ========================================================= */
+    @media (max-width: 760px) {
+      /* Important: on phones content should never stay hidden if JS/network is slow. */
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      /* Keep a small 3D hero instead of hiding everything. */
+      .stage-wrap {
+        min-height: 370px;
+        perspective: 900px;
+        transform-style: preserve-3d;
+      }
+
+      .stage-glow,
+      .orbit,
+      .float-card {
+        display: block !important;
+      }
+
+      .stage-glow {
+        inset: 22%;
+        opacity: 0.75;
+        filter: blur(10px);
+        animation: breathe 5.5s ease-in-out infinite alternate;
+      }
+
+      .orbit {
+        inset: 74px 42px;
+        opacity: 0.55;
+        animation: orbitSpin 28s linear infinite;
+      }
+
+      .cube {
+        width: 118px;
+        height: 118px;
+        animation: cubeSpin 16s linear infinite !important;
+        will-change: transform;
+      }
+
+      .cube-face {
+        font-size: 0.95rem;
+        background: linear-gradient(135deg, rgba(97, 233, 255, 0.16), rgba(166, 108, 255, 0.09));
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(59px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(59px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(59px); }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(59px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(59px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(59px); }
+
+      .float-card {
+        width: 132px;
+        padding: 11px 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.085);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        will-change: transform;
+      }
+
+      .float-card b { font-size: 0.78rem; }
+      .float-card span { font-size: 0.67rem; }
+
+      .float-card.one {
+        left: 0;
+        top: 26px;
+        animation: phoneFloatOne 6s ease-in-out infinite;
+      }
+
+      .float-card.two {
+        right: 0;
+        top: 88px;
+        animation: phoneFloatTwo 6.4s ease-in-out infinite;
+      }
+
+      .float-card.three {
+        left: 8px;
+        bottom: 78px;
+        animation: phoneFloatThree 6.8s ease-in-out infinite;
+      }
+
+      .float-card.four {
+        right: 10px;
+        bottom: 30px;
+        animation: phoneFloatFour 7.2s ease-in-out infinite;
+      }
+
+      /* Keep the flow section visible and premium on phone, without heavy scroll math. */
+      .motion-bg-title {
+        display: block !important;
+        font-size: 4.6rem;
+        opacity: 0.045;
+      }
+
+      .motion-line {
+        display: block !important;
+        top: 52%;
+        opacity: 0.35;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        transform: none !important;
+        animation: phoneSoftLift 5.8s ease-in-out infinite;
+      }
+
+      .motion-card:nth-child(2) { animation-delay: 0.5s; }
+      .motion-card:nth-child(3) { animation-delay: 1s; }
+
+      .service-card {
+        min-height: auto;
+      }
+    }
+
+    @keyframes phoneFloatOne {
+      0%, 100% { transform: rotateY(-12deg) rotateX(6deg) translate3d(0, 0, 45px); }
+      50% { transform: rotateY(-12deg) rotateX(6deg) translate3d(8px, -12px, 58px); }
+    }
+
+    @keyframes phoneFloatTwo {
+      0%, 100% { transform: rotateY(14deg) rotateX(-5deg) translate3d(0, 0, 52px); }
+      50% { transform: rotateY(14deg) rotateX(-5deg) translate3d(-10px, 10px, 65px); }
+    }
+
+    @keyframes phoneFloatThree {
+      0%, 100% { transform: rotateY(12deg) rotateX(5deg) translate3d(0, 0, 48px); }
+      50% { transform: rotateY(12deg) rotateX(5deg) translate3d(9px, 10px, 62px); }
+    }
+
+    @keyframes phoneFloatFour {
+      0%, 100% { transform: rotateY(-14deg) rotateX(-4deg) translate3d(0, 0, 45px); }
+      50% { transform: rotateY(-14deg) rotateX(-4deg) translate3d(-9px, -10px, 60px); }
+    }
+
+    @keyframes phoneSoftLift {
+      0%, 100% { transform: translateY(0) !important; }
+      50% { transform: translateY(-8px) !important; }
+    }
+
+
+
+
+    /* =========================================================
+       MOBILE REAL 3D FIX
+       These rules keep the phone version smooth but make the 3D
+       visible in the exact sections people see while scrolling.
+       ========================================================= */
+    @media (max-width: 760px) {
+      body {
+        background:
+          radial-gradient(circle at 20% 4%, rgba(97, 233, 255, 0.18), transparent 24rem),
+          radial-gradient(circle at 90% 22%, rgba(166, 108, 255, 0.16), transparent 24rem),
+          radial-gradient(circle at 40% 92%, rgba(77, 124, 255, 0.14), transparent 24rem),
+          var(--bg);
+      }
+
+      .hero-grid,
+      .services-grid,
+      .process-grid,
+      .motion-stage {
+        perspective: 900px;
+        transform-style: preserve-3d;
+      }
+
+      /* Hero 3D should be obvious on phone, not hidden or flat. */
+      .stage-wrap {
+        min-height: 430px !important;
+        transform: rotateX(8deg) rotateY(-7deg);
+        animation: mobileStageBreath 7s ease-in-out infinite;
+      }
+
+      .cube {
+        width: 132px !important;
+        height: 132px !important;
+        filter: drop-shadow(0 26px 42px rgba(97, 233, 255, 0.20));
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(66px) !important; }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(66px) !important; }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(66px) !important; }
+
+      .orbit {
+        inset: 62px 28px !important;
+        opacity: 0.8 !important;
+      }
+
+      .float-card.one { transform: rotateY(-26deg) rotateX(10deg) translate3d(0, 0, 76px) !important; }
+      .float-card.two { transform: rotateY(24deg) rotateX(-8deg) translate3d(0, 0, 88px) !important; }
+      .float-card.three { transform: rotateY(20deg) rotateX(10deg) translate3d(0, 0, 72px) !important; }
+      .float-card.four { transform: rotateY(-24deg) rotateX(-8deg) translate3d(0, 0, 78px) !important; }
+
+      /* Services: keep cards usable, but add visible depth. */
+      .service-card {
+        transform-style: preserve-3d !important;
+        box-shadow:
+          0 18px 42px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .service-card:nth-child(odd) {
+        transform: perspective(850px) rotateY(-4deg) rotateX(2deg) translateZ(0) !important;
+      }
+
+      .service-card:nth-child(even) {
+        transform: perspective(850px) rotateY(4deg) rotateX(2deg) translateZ(0) !important;
+      }
+
+      .service-card::after {
+        opacity: 0.55 !important;
+      }
+
+      .service-top,
+      .service-card h3,
+      .service-card p,
+      .click-note {
+        transform: translateZ(22px) !important;
+      }
+
+      /* QR should look premium but same size as other services. */
+      .qr-mini {
+        transform: translateZ(34px) rotateX(4deg);
+        box-shadow: 0 18px 35px rgba(97, 233, 255, 0.12);
+      }
+
+      /* The Smart Website Flow section now moves with scroll on phone too. */
+      .motion-lab {
+        min-height: 1180px !important;
+      }
+
+      .motion-sticky {
+        position: sticky !important;
+        top: 74px !important;
+        min-height: 720px !important;
+        overflow: hidden;
+      }
+
+      .motion-content {
+        display: block !important;
+        padding-top: 34px;
+      }
+
+      .motion-copy {
+        transform: translateY(calc(var(--p, 0) * -26px)) !important;
+      }
+
+      .motion-stage {
+        height: 420px !important;
+        margin-top: 26px;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        width: min(300px, 82vw) !important;
+        left: 50% !important;
+        top: 50% !important;
+        animation: none !important;
+        box-shadow:
+          0 25px 55px rgba(0, 0, 0, 0.42),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        background: rgba(255, 255, 255, 0.075) !important;
+        border-color: rgba(97, 233, 255, 0.18) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
+
+      .motion-card:nth-child(1) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(-54px + var(--p, 0) * 36px))
+          translateY(calc(-122px + var(--p, 0) * -22px))
+          translateZ(calc(35px + var(--p, 0) * 45px))
+          rotateY(calc(-18deg + var(--p, 0) * 18deg))
+          rotateX(8deg) !important;
+      }
+
+      .motion-card:nth-child(2) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(14px + var(--p, 0) * -28px))
+          translateY(calc(2px + var(--p, 0) * -34px))
+          translateZ(calc(95px + var(--p, 0) * 42px))
+          rotateY(calc(8deg + var(--p, 0) * -16deg))
+          rotateX(-4deg) !important;
+      }
+
+      .motion-card:nth-child(3) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(58px + var(--p, 0) * -38px))
+          translateY(calc(126px + var(--p, 0) * 18px))
+          translateZ(calc(30px + var(--p, 0) * 40px))
+          rotateY(calc(18deg + var(--p, 0) * -18deg))
+          rotateX(-7deg) !important;
+      }
+
+      .motion-line {
+        display: block !important;
+        bottom: 28px !important;
+        top: auto !important;
+        opacity: 0.8 !important;
+      }
+
+      .motion-line span {
+        width: calc(var(--p, 0) * 100%) !important;
+      }
+
+      /* Process cards in screenshot should not look flat. */
+      .process-grid {
+        perspective: 850px !important;
+      }
+
+      .process-card {
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d !important;
+        box-shadow:
+          0 20px 44px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .process-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(120deg, transparent 16%, rgba(97, 233, 255, 0.18), transparent 42%);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .process-card:nth-child(odd) {
+        transform: perspective(850px) rotateY(-4deg) rotateX(2deg) !important;
+      }
+
+      .process-card:nth-child(even) {
+        transform: perspective(850px) rotateY(4deg) rotateX(2deg) !important;
+      }
+
+      .process-card .num,
+      .process-card h3,
+      .process-card p {
+        position: relative;
+        z-index: 1;
+        transform: translateZ(20px);
+      }
+    }
+
+    @keyframes mobileStageBreath {
+      0%, 100% { transform: rotateX(8deg) rotateY(-7deg) translateY(0); }
+      50% { transform: rotateX(4deg) rotateY(7deg) translateY(-8px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="nav">
+      <a class="brand" href="#home" aria-label="Lalit Web Studio home">
+        <span class="brand-mark">LW</span>
+        <span>Lalit Web Studio</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#skills">Skills</a>
+        <a href="#process">Process</a>
+        <a class="nav-cta" href="#contact">Start Project</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div>
+            <div class="status-pill reveal">
+              <span class="live-dot"></span>
+              Modern websites for local businesses
+            </div>
+
+            <div class="portfolio-badge reveal">Lalit Web Studio</div>
+
+            <h1 class="reveal">
+              <span class="small-line">Lalit Pokhriya</span>
+              Lalit <span class="gradient-text">Web Studio</span>
+            </h1>
+
+            <p class="hero-text reveal">
+              I build modern, mobile-friendly websites for local businesses and service brands that want to look professional, build trust, and turn visitors into real enquiries.
+            </p>
+
+            <div class="hero-actions reveal">
+              <a class="btn btn-primary" href="#contact">Start a Website ↗</a>
+              <a class="btn btn-secondary" href="#services">View Services</a>
+            </div>
+
+            <div class="micro-trust reveal">
+              <div class="micro-card">
+                <b>Mobile-first</b>
+                <span>Looks good on phones</span>
+              </div>
+              <div class="micro-card">
+                <b>Fast loading</b>
+                <span>Lightweight static site</span>
+              </div>
+              <div class="micro-card">
+                <b>Client-focused</b>
+                <span>Clear message + CTA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-wrap reveal" aria-label="3D web studio visual">
+            <div class="stage-glow"></div>
+            <div class="orbit"></div>
+
+            <div class="cube" aria-hidden="true">
+              <div class="cube-face">Web</div>
+              <div class="cube-face">Brand</div>
+              <div class="cube-face">Trust</div>
+              <div class="cube-face">LWS</div>
+              <div class="cube-face">SEO</div>
+              <div class="cube-face">UX</div>
+            </div>
+
+            <div class="float-card one">
+              <b>Portfolio Identity</b>
+              <span>A sharp first impression</span>
+            </div>
+            <div class="float-card two">
+              <b>Business Websites</b>
+              <span>Trust, calls and enquiries</span>
+            </div>
+            <div class="float-card three">
+              <b>Brand Presence</b>
+              <span>Clear story and services</span>
+            </div>
+            <div class="float-card four">
+              <b>Smart Features</b>
+              <span>WhatsApp, maps and forms</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">About</p>
+              <h2 class="title reveal">A focused web studio with a <span>clear business purpose.</span></h2>
+            </div>
+            <p class="lead reveal">
+              Lalit Web Studio helps small businesses build a clean, trustworthy and easy-to-contact online presence.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-card glass-card reveal">
+              <h3>What I actually do</h3>
+              <p>
+                I create websites that explain your business clearly, present your services properly, and make it easy for customers to contact you.
+              </p>
+              <p>
+                The goal is simple: make your business look trustworthy, easy to understand and easy to contact.
+              </p>
+            </div>
+
+            <div class="identity-grid reveal">
+              <div class="identity-box glass-card">
+                <span class="icon">🧭</span>
+                <div>
+                  <b>Clear positioning</b>
+                  <span>Your website should tell people what you do in 5 seconds.</span>
+                </div>
+              </div>
+
+              <div class="identity-box glass-card">
+                <span class="icon">⚡</span>
+                <div>
+                  <b>Fast experience</b>
+                  <span>Modern visuals without making the website heavy.</span>
+                </div>
+              </div>
+
+              <div class="identity-box glass-card">
+                <span class="icon">📱</span>
+                <div>
+                  <b>Phone friendly</b>
+                  <span>Most local customers open websites on mobile first.</span>
+                </div>
+              </div>
+
+              <div class="identity-box glass-card">
+                <span class="icon">🎯</span>
+                <div>
+                  <b>Action focused</b>
+                  <span>WhatsApp, call, form, maps and useful CTAs.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">Services</p>
+              <h2 class="title reveal">Only the work I can actually deliver <span>properly.</span></h2>
+            </div>
+            <p class="lead reveal">
+              Clear, mobile-friendly websites for local brands, service providers and growing businesses — with smart contact buttons, QR access and clean content.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <button class="service-card glass-card reveal" style="--delay: 0ms" data-service="business">
+              <span class="service-top">
+                <span class="service-number">01</span>
+                <span class="service-icon">🏢</span>
+              </span>
+              <h3>Business Website</h3>
+              <p>A clean website for shops, gyms, salons, clinics, institutes and service providers who need a professional online identity.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card reveal" style="--delay: 90ms" data-service="lead">
+              <span class="service-top">
+                <span class="service-number">02</span>
+                <span class="service-icon">📞</span>
+              </span>
+              <h3>Lead & Contact Page</h3>
+              <p>A focused landing page that guides visitors toward WhatsApp, calls, forms, Google Maps and real enquiries.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card qr-service-card reveal" style="--delay: 180ms" data-service="qr">
+              <span class="service-top">
+                <span class="service-number">03</span>
+                <span class="service-icon">▦</span>
+              </span>
+              <h3>QR Smart Website</h3>
+              <p>A scan-to-open website page for posters, shop counters, business cards and catalogs. Customers scan the QR and instantly open your website, contact button, location or latest offer.</p>
+
+              <div class="qr-mini" aria-hidden="true">
+                <div class="qr-mini-grid">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span class="qr-scan-line"></span>
+              </div>
+
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card reveal" style="--delay: 270ms" data-service="catalog">
+              <span class="service-top">
+                <span class="service-number">04</span>
+                <span class="service-icon">🧾</span>
+              </span>
+              <h3>Product / Service Catalog</h3>
+              <p>Show services, packages, prices, photos or offers in a neat digital catalog that is easy to share with customers.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card reveal" style="--delay: 360ms" data-service="redesign">
+              <span class="service-top">
+                <span class="service-number">05</span>
+                <span class="service-icon">🛠️</span>
+              </span>
+              <h3>Website Redesign</h3>
+              <p>Already have a website? I can make it cleaner, faster, mobile-friendly and easier for customers to understand.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">Skills</p>
+              <h2 class="title reveal">Skills behind the <span>Lalit Web Studio</span> work.</h2>
+            </div>
+            <p class="lead reveal">
+              I focus on practical skills that help me build clean, responsive and client-ready websites — not just pretty screens.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-focus-card glass-card reveal">
+              <div>
+                <h3>Design sense + code + Python + AI tools, used together.</h3>
+                <p>
+                  My strength is creating simple business websites with clear content, smooth UI, mobile layout, Python + AI tools and direct action buttons.
+                </p>
+              </div>
+
+              <div class="skill-orbit" aria-hidden="true">
+                <b>LWS Skills</b>
+              </div>
+
+              <div class="skill-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Python + AI</span>
+                <span>Responsive Design</span>
+                <span>AI Tools</span>
+                <span>QR Pages</span>
+                <span>WhatsApp Links</span>
+                <span>Basic SEO</span>
+              </div>
+            </div>
+
+            <div class="skill-list-grid">
+              <div class="skill-card glass-card reveal" style="--delay: 0ms">
+                <span class="skill-icon">🧱</span>
+                <h3>HTML Structure</h3>
+                <p>Clean page sections, proper content flow and simple structure that is easy to understand and update.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 80ms">
+                <span class="skill-icon">🎨</span>
+                <h3>CSS Design & Animation</h3>
+                <p>Modern cards, glass effects, hover animation, spacing, typography and responsive layouts.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 160ms">
+                <span class="skill-icon">⚙️</span>
+                <h3>JavaScript Interactions</h3>
+                <p>Buttons, popups, smooth scroll, WhatsApp form messages and small interactive website features.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 240ms">
+                <span class="skill-icon">🐍</span>
+                <h3>Python + AI</h3>
+                <p>Python for logic building, small automation ideas, data handling and AI-assisted planning for better website workflows.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 320ms">
+                <span class="skill-icon">📱</span>
+                <h3>Mobile-First Design</h3>
+                <p>Layouts that look clean on phones first, because most local customers open websites on mobile.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 400ms">
+                <span class="skill-icon">🚀</span>
+                <h3>AI Tools, SEO & Performance</h3>
+                <p>AI-assisted planning, readable content, meta tags, fast static pages and simple hosting-ready structure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3D Scroll Flow -->
+      <section class="motion-lab" id="motion">
+        <div class="motion-sticky">
+          <div class="motion-bg-title">LWS FLOW</div>
+
+          <div class="motion-content">
+            <div class="motion-copy">
+              <p class="eyebrow">Smart Website Flow</p>
+              <h2 class="title">A smooth journey that helps visitors <span>understand and trust.</span></h2>
+              <p class="lead">
+                A good website guides visitors smoothly — first they understand your business, then they trust your brand, and finally they contact you.
+              </p>
+            </div>
+
+            <div class="motion-stage">
+              <div class="motion-card">
+                <span>01</span>
+                <b>Understand</b>
+                <span>Your business, target customers, main services and trust points.</span>
+              </div>
+
+              <div class="motion-card">
+                <span>02</span>
+                <b>Design</b>
+                <span>Clear layout, readable content, strong sections and mobile-first experience.</span>
+              </div>
+
+              <div class="motion-card">
+                <span>03</span>
+                <b>Launch</b>
+                <span>WhatsApp, enquiry buttons, Google Maps, basic SEO and launch-ready setup.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="motion-line"><span></span></div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="section" id="process">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">Process</p>
+              <h2 class="title reveal">Simple process. <span>No confusion for clients.</span></h2>
+            </div>
+            <p class="lead reveal">
+              You get a simple step-by-step process, clear communication and a website that supports real business goals.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <div class="process-card glass-card reveal">
+              <div class="num">01</div>
+              <h3>Business Discussion</h3>
+              <p>Understand your services, photos, location, offers and the main action customers should take.</p>
+            </div>
+
+            <div class="process-card glass-card reveal">
+              <div class="num">02</div>
+              <h3>Website Design</h3>
+              <p>Create a clean design with clear content, smooth sections and modern visual feel.</p>
+            </div>
+
+            <div class="process-card glass-card reveal">
+              <div class="num">03</div>
+              <h3>Smart Setup</h3>
+              <p>Add WhatsApp, enquiry form, map, useful CTAs, basic SEO and mobile optimization.</p>
+            </div>
+
+            <div class="process-card glass-card reveal">
+              <div class="num">04</div>
+              <h3>Launch & Support</h3>
+              <p>Publish the website and help with small changes when business details change.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section" id="contact">
+        <div class="container contact-shell">
+          <div class="contact-copy glass-card reveal">
+            <p class="eyebrow">Contact</p>
+            <h2 class="title">Let’s build a website people <span>remember.</span></h2>
+            <p>
+              Share your business details and I’ll help plan a clean website structure with the right sections and features.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/919259350982" target="_blank" rel="noopener">WhatsApp Me</a>
+              <a class="btn btn-secondary" href="mailto:lalitpokhriya2006@gmail.com">Email Me</a>
+            </div>
+
+            <div class="contact-list">
+              <div class="contact-row">
+                <span class="mini-icon">📍</span>
+                <span>Uttarakhand, India</span>
+              </div>
+              <div class="contact-row">
+                <span class="mini-icon">🎓</span>
+                <span>BCA AI-DS, Graphic Era Hill University Bhimtal</span>
+              </div>
+              <div class="contact-row">
+                <span class="mini-icon">💼</span>
+                <span>Business websites, QR pages and digital web presence</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form glass-card reveal">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" type="text" placeholder="Enter your name" />
+            </div>
+
+            <div class="field">
+              <label for="business">Business / work type</label>
+              <input id="business" type="text" placeholder="Shop, salon, gym, clinic, institute, service, etc." />
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me what kind of website you need..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" id="sendWhatsapp">Send on WhatsApp</button>
+              <a class="btn btn-secondary" href="#services">View Services</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        © 2026 <strong>Lalit Pokhriya</strong>. All rights reserved. Designed &amp; built for Lalit Web Studio.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Service detail modal -->
+  <div class="modal" id="serviceModal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Service Title</h3>
+      <p id="modalText">Service text</p>
+
+      <div class="modal-list" id="modalList"></div>
+
+      <button class="btn btn-primary modal-close" id="closeModal">Back</button>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       Simple JavaScript for animations and interactions.
+       ========================================================= */
+
+    const navLinks = document.getElementById("navLinks");
+    const menuBtn = document.getElementById("menuBtn");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    // Heavy pointer effects run only on laptop/desktop.
+    // This keeps the site smoother on phones and old devices.
+    const desktopMotion = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 761px)").matches;
+
+    /* Mouse spotlight */
+    if (desktopMotion) {
+      window.addEventListener("pointermove", (event) => {
+        document.documentElement.style.setProperty("--mx", event.clientX + "px");
+        document.documentElement.style.setProperty("--my", event.clientY + "px");
+      }, { passive: true });
+    }
+
+    /* Reveal on scroll */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    /* Card glow follows mouse inside each card */
+    if (desktopMotion) {
+      document.querySelectorAll(".glass-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+
+          card.style.setProperty("--x", x + "px");
+          card.style.setProperty("--y", y + "px");
+        }, { passive: true });
+      });
+    }
+
+    /* 3D tilt for service cards */
+    if (desktopMotion) {
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+          const y = (event.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+          card.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
+        }, { passive: true });
+
+        card.addEventListener("pointerleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
+
+    /* Hero 3D parallax */
+    const stage = document.querySelector(".stage-wrap");
+    const cube = document.querySelector(".cube");
+    const floats = document.querySelectorAll(".float-card");
+
+    if (desktopMotion) {
+      window.addEventListener("pointermove", (event) => {
+        if (!stage) return;
+
+        const x = event.clientX / window.innerWidth - 0.5;
+        const y = event.clientY / window.innerHeight - 0.5;
+
+        stage.style.transform = `rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
+        cube.style.marginLeft = x * 16 + "px";
+        cube.style.marginTop = y * 16 + "px";
+
+        floats.forEach((card, index) => {
+          const power = (index + 1) * 7;
+          card.style.marginLeft = x * power + "px";
+          card.style.marginTop = y * power + "px";
+        });
+      }, { passive: true });
+    }
+
+    /* Scroll-based 3D flow progress */
+    const motionSection = document.querySelector(".motion-lab");
+
+    function updateMotionProgress() {
+      if (!motionSection) return;
+
+      const rect = motionSection.getBoundingClientRect();
+      const scrollable = Math.max(1, rect.height - window.innerHeight);
+      const rawProgress = Math.abs(rect.top) / scrollable;
+      const progress = Math.min(1, Math.max(0, rawProgress));
+
+      motionSection.style.setProperty("--p", progress.toFixed(3));
+    }
+
+    window.addEventListener("scroll", updateMotionProgress, { passive: true });
+    window.addEventListener("resize", updateMotionProgress);
+    updateMotionProgress();
+
+    /* No-reload service detail modal */
+    const serviceContent = {
+      business: {
+        title: "Business Website",
+        text: "A clean and professional website for local businesses that need trust, visibility and easy customer contact.",
+        points: ["Home page", "About section", "Services section", "Contact buttons", "Google Maps", "Mobile-first design"]
+      },
+      lead: {
+        title: "Lead & Contact Page",
+        text: "A focused page that guides visitors toward WhatsApp, calls, enquiry forms and map visits.",
+        points: ["WhatsApp CTA", "Call button", "Enquiry form", "Offer section", "Map link", "Basic analytics ready"]
+      },
+      qr: {
+        title: "QR Smart Website",
+        text: "A clean scan-to-open website page for posters, shop counters, business cards and catalogs. One QR can open your contact, location, offers, catalog or latest updates.",
+        points: ["QR-ready page", "Fast mobile opening", "WhatsApp button", "Google Maps", "Offer/catalog section", "Easy sharing"]
+      },
+      catalog: {
+        title: "Product / Service Catalog",
+        text: "A simple digital catalog for businesses that want to show services, products, packages, photos or pricing online.",
+        points: ["Category layout", "Pricing cards", "Image area", "QR share", "Easy updates", "Organized layout"]
+      },
+      redesign: {
+        title: "Website Redesign",
+        text: "Improve an old website with better UI, readability, mobile experience and clearer customer journey.",
+        points: ["Modern UI", "Better spacing", "Mobile fixes", "Speed improvement", "Content cleanup", "CTA improvement"]
+      }
+    };
+
+    const modal = document.getElementById("serviceModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalList = document.getElementById("modalList");
+    const closeModal = document.getElementById("closeModal");
+
+    document.querySelectorAll("[data-service]").forEach((card) => {
+      card.addEventListener("click", () => {
+        const item = serviceContent[card.dataset.service];
+
+        modalTitle.textContent = item.title;
+        modalText.textContent = item.text;
+        modalList.innerHTML = item.points.map((point) => `<span>${point}</span>`).join("");
+
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function hideModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    closeModal.addEventListener("click", hideModal);
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) hideModal();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") hideModal();
+    });
+
+    /* WhatsApp message from form */
+    document.getElementById("sendWhatsapp").addEventListener("click", () => {
+      const name = document.getElementById("name").value.trim();
+      const business = document.getElementById("business").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const text = encodeURIComponent(
+        `Hello Lalit, I want a website.\n\nName: ${name}\nBusiness: ${business}\nMessage: ${message}`
+      );
+
+      window.open(`https://wa.me/919259350982?text=${text}`, "_blank");
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lalit Web Studio | Modern Business Websites</title>
+  <meta name="description" content="Lalit Web Studio builds modern, mobile-friendly websites for local businesses, service brands and growing businesses." />
+
+  <!-- Readable premium fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       LALIT WEB STUDIO — PREMIUM 3D PORTFOLIO
+       Clean, readable, human-like code.
+       No React. No Three.js. No heavy library.
+       ========================================================= */
+
+    :root {
+      --bg: #050712;
+      --bg-soft: #090d1b;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-strong: rgba(255, 255, 255, 0.10);
+      --line: rgba(255, 255, 255, 0.12);
+      --line-strong: rgba(99, 233, 255, 0.35);
+      --text: #eef4ff;
+      --soft: #aab7ce;
+      --muted: #71809b;
+      --cyan: #61e9ff;
+      --blue: #4d7cff;
+      --violet: #a66cff;
+      --green: #52ffa8;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+      --radius: 24px;
+      --max: 1180px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-head: "Sora", sans-serif;
+      --font-body: "Inter", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(77, 124, 255, 0.20), transparent 34rem),
+        radial-gradient(circle at 75% 12%, rgba(166, 108, 255, 0.16), transparent 32rem),
+        radial-gradient(circle at 50% 90%, rgba(97, 233, 255, 0.10), transparent 34rem),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at 50% 20%, black, transparent 78%);
+    }
+
+    /* Big soft background watermark */
+    body::after {
+      content: "LWS";
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) rotate(-8deg);
+      color: rgba(255, 255, 255, 0.025);
+      font-family: var(--font-head);
+      font-size: clamp(10rem, 32vw, 30rem);
+      font-weight: 800;
+      letter-spacing: -0.14em;
+      white-space: nowrap;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 44px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: var(--cyan);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      box-shadow: 0 0 18px rgba(97, 233, 255, 0.9);
+    }
+
+    .title {
+      max-width: 720px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+    }
+
+    .title span,
+    .gradient-text {
+      background: linear-gradient(110deg, #ffffff, var(--cyan), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 560px;
+      color: var(--soft);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+    }
+
+    /* ------------------- Navigation ------------------- */
+
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      width: min(var(--max), calc(100% - 32px));
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(5, 7, 18, 0.62);
+      backdrop-filter: blur(22px);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding-left: 8px;
+      font-family: var(--font-head);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #051018;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      box-shadow: 0 0 28px rgba(97, 233, 255, 0.35);
+      font-size: 0.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--soft);
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: 0.25s var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-cta {
+      padding: 10px 18px !important;
+      color: #061019 !important;
+      background: linear-gradient(135deg, var(--cyan), var(--green)) !important;
+      box-shadow: 0 10px 34px rgba(97, 233, 255, 0.22);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ------------------- Hero ------------------- */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 0 80px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 10px 14px;
+      border: 1px solid rgba(97, 233, 255, 0.24);
+      border-radius: 999px;
+      background: rgba(97, 233, 255, 0.07);
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .portfolio-badge {
+      width: fit-content;
+      margin-bottom: 14px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(166, 108, 255, 0.30);
+      background: rgba(166, 108, 255, 0.10);
+      color: #d9ccff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 0 30px rgba(166, 108, 255, 0.12);
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 16px var(--green);
+      animation: pulse 1.4s infinite;
+    }
+
+    @keyframes pulse {
+      50% { opacity: 0.35; transform: scale(0.82); }
+    }
+
+    .hero h1 {
+      max-width: 660px;
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 8.5vw, 6.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+    }
+
+    .hero h1 .small-line {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--soft);
+      font-size: clamp(1.45rem, 3.4vw, 2.65rem);
+      letter-spacing: -0.05em;
+    }
+
+    .hero-text {
+      max-width: 590px;
+      margin-top: 24px;
+      color: var(--soft);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      overflow: hidden;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: #061019;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 18px 50px rgba(97, 233, 255, 0.26);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 22px 70px rgba(97, 233, 255, 0.38);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .micro-trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .micro-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .micro-card b {
+      display: block;
+      color: white;
+      font-size: 0.98rem;
+    }
+
+    .micro-card span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ------------------- Real 3D visual stage ------------------- */
+
+    .stage-wrap {
+      position: relative;
+      min-height: 560px;
+      perspective: 1100px;
+    }
+
+    .stage-glow {
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(97, 233, 255, 0.18), transparent 65%);
+      filter: blur(12px);
+      animation: breathe 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes breathe {
+      from { transform: scale(0.92); opacity: 0.75; }
+      to { transform: scale(1.06); opacity: 1; }
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 62px;
+      transform-style: preserve-3d;
+      animation: orbitSpin 18s linear infinite;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(97, 233, 255, 0.25);
+      border-radius: 50%;
+      box-shadow: inset 0 0 50px rgba(97, 233, 255, 0.06);
+    }
+
+    .orbit::after {
+      transform: rotateX(68deg);
+      border-color: rgba(166, 108, 255, 0.25);
+    }
+
+    @keyframes orbitSpin {
+      to { transform: rotateY(360deg) rotateX(10deg); }
+    }
+
+    .cube {
+      position: absolute;
+      left: 50%;
+      top: 49%;
+      width: 180px;
+      height: 180px;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%) rotateX(-18deg) rotateY(35deg);
+      animation: cubeSpin 13s linear infinite;
+    }
+
+    .cube-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(135deg, rgba(97, 233, 255, 0.17), rgba(166, 108, 255, 0.10));
+      backdrop-filter: blur(16px);
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.05);
+    }
+
+    .cube-face:nth-child(1) { transform: translateZ(90px); }
+    .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(90px); }
+    .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(90px); }
+    .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(90px); }
+    .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(90px); }
+    .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(90px); }
+
+    @keyframes cubeSpin {
+      to { transform: translate(-50%, -50%) rotateX(342deg) rotateY(395deg); }
+    }
+
+    .float-card {
+      position: absolute;
+      width: 188px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      transition: transform 0.2s var(--ease);
+    }
+
+    .float-card b {
+      display: block;
+      color: white;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+
+    .float-card span {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .float-card.one {
+      left: 0;
+      top: 50px;
+      transform: rotateY(-18deg) rotateX(8deg) translateZ(70px);
+      animation: floatA 5s ease-in-out infinite;
+    }
+
+    .float-card.two {
+      right: 8px;
+      top: 118px;
+      transform: rotateY(20deg) rotateX(-6deg) translateZ(90px);
+      animation: floatB 5.4s ease-in-out infinite;
+    }
+
+    .float-card.three {
+      left: 38px;
+      bottom: 100px;
+      transform: rotateY(22deg) rotateX(5deg) translateZ(90px);
+      animation: floatC 5.8s ease-in-out infinite;
+    }
+
+    .float-card.four {
+      right: 54px;
+      bottom: 38px;
+      transform: rotateY(-22deg) rotateX(-4deg) translateZ(70px);
+      animation: floatD 6.2s ease-in-out infinite;
+    }
+
+    @keyframes floatA { 50% { transform: rotateY(-18deg) rotateX(8deg) translate3d(16px, -18px, 90px); } }
+    @keyframes floatB { 50% { transform: rotateY(20deg) rotateX(-6deg) translate3d(-16px, 18px, 110px); } }
+    @keyframes floatC { 50% { transform: rotateY(22deg) rotateX(5deg) translate3d(20px, 14px, 120px); } }
+    @keyframes floatD { 50% { transform: rotateY(-22deg) rotateX(-4deg) translate3d(-22px, -16px, 98px); } }
+
+    /* ------------------- Cards and grids ------------------- */
+
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: 0.35s var(--ease);
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 20%), rgba(97, 233, 255, 0.16), transparent 34%);
+      pointer-events: none;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-card {
+      padding: 34px;
+    }
+
+    .about-card h3 {
+      margin-bottom: 16px;
+      font-family: var(--font-head);
+      font-size: 1.65rem;
+      letter-spacing: -0.04em;
+    }
+
+    .about-card p {
+      color: var(--soft);
+      margin-bottom: 16px;
+    }
+
+    .identity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .identity-box {
+      min-height: 142px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .identity-box .icon {
+      font-size: 1.65rem;
+    }
+
+    .identity-box b {
+      display: block;
+      color: white;
+      font-size: 1.05rem;
+      margin-top: 18px;
+    }
+
+    .identity-box span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      perspective: 1200px;
+    }
+
+    .service-card {
+      min-height: 286px;
+      padding: 28px;
+      overflow: hidden;
+      isolation: isolate;
+      text-align: left;
+      color: inherit;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition:
+        transform 0.32s var(--ease),
+        border-color 0.32s var(--ease),
+        box-shadow 0.32s var(--ease),
+        background 0.32s var(--ease);
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -1;
+      opacity: 0;
+      border-radius: inherit;
+      background:
+        linear-gradient(120deg, transparent 15%, rgba(97, 233, 255, 0.26), transparent 42%),
+        radial-gradient(circle at 20% 20%, rgba(166, 108, 255, 0.18), transparent 32%),
+        radial-gradient(circle at 80% 0%, rgba(97, 233, 255, 0.13), transparent 32%);
+      transition: opacity 0.35s var(--ease);
+    }
+
+    .service-card:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38), 0 0 34px rgba(97, 233, 255, 0.10);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .service-card.reveal.show {
+      animation: servicePop 0.85s var(--ease) both;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    @keyframes servicePop {
+      0% {
+        opacity: 0;
+        transform: translateY(34px) rotateX(10deg) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg) scale(1);
+      }
+    }
+
+    .service-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      transform: translateZ(34px);
+    }
+
+    .service-number {
+      color: var(--cyan);
+      font-family: var(--font-head);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .service-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border: 1px solid rgba(97, 233, 255, 0.18);
+      border-radius: 18px;
+      background: rgba(97, 233, 255, 0.11);
+      font-size: 1.55rem;
+      box-shadow: inset 0 0 22px rgba(97, 233, 255, 0.05);
+      transition: transform 0.35s var(--ease), background 0.35s var(--ease);
+    }
+
+    .service-card:hover .service-icon {
+      transform: translateY(-3px) rotate(-4deg) scale(1.06);
+      background: rgba(97, 233, 255, 0.16);
+    }
+
+    .service-card h3 {
+      margin: 22px 0 10px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1.22rem;
+      letter-spacing: -0.04em;
+      transform: translateZ(28px);
+    }
+
+    .service-card p {
+      color: var(--soft);
+      font-size: 0.94rem;
+      transform: translateZ(18px);
+    }
+
+    .click-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: var(--cyan);
+      font-size: 0.82rem;
+      font-weight: 800;
+      transform: translateZ(28px);
+    }
+
+    .service-card:hover .click-note {
+      animation: arrowNudge 0.9s var(--ease) infinite alternate;
+    }
+
+    @keyframes arrowNudge {
+      from { transform: translateZ(28px) translateX(0); }
+      to { transform: translateZ(28px) translateX(7px); }
+    }
+
+    /* QR card stays the same size as other services.
+       The small QR preview is only a visual proof that QR pages can be made. */
+    .qr-service-card {
+      min-height: 315px;
+    }
+
+    .qr-mini {
+      position: relative;
+      width: 104px;
+      height: 104px;
+      margin-top: 18px;
+      padding: 10px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(97, 233, 255, 0.22);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.20);
+      transform: translateZ(24px);
+    }
+
+    .qr-mini-grid {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+
+    .qr-mini-grid span {
+      border-radius: 3px;
+      background: #051018;
+      opacity: 0.18;
+    }
+
+    .qr-mini-grid span:nth-child(1),
+    .qr-mini-grid span:nth-child(2),
+    .qr-mini-grid span:nth-child(3),
+    .qr-mini-grid span:nth-child(8),
+    .qr-mini-grid span:nth-child(10),
+    .qr-mini-grid span:nth-child(15),
+    .qr-mini-grid span:nth-child(16),
+    .qr-mini-grid span:nth-child(17),
+    .qr-mini-grid span:nth-child(22),
+    .qr-mini-grid span:nth-child(24),
+    .qr-mini-grid span:nth-child(28),
+    .qr-mini-grid span:nth-child(31),
+    .qr-mini-grid span:nth-child(33),
+    .qr-mini-grid span:nth-child(36),
+    .qr-mini-grid span:nth-child(39),
+    .qr-mini-grid span:nth-child(42),
+    .qr-mini-grid span:nth-child(44),
+    .qr-mini-grid span:nth-child(46),
+    .qr-mini-grid span:nth-child(47),
+    .qr-mini-grid span:nth-child(49) {
+      opacity: 1;
+    }
+
+    .qr-scan-line {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      top: 10px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      box-shadow: 0 0 18px rgba(97, 233, 255, 0.9);
+      animation: qrLineMove 2.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes qrLineMove {
+      from { transform: translateY(0); opacity: 0.72; }
+      to { transform: translateY(76px); opacity: 1; }
+    }
+
+    /* ------------------- Skills Highlight ------------------- */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .skill-focus-card {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 360px;
+      overflow: hidden;
+    }
+
+    .skill-focus-card h3 {
+      max-width: 460px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .skill-focus-card p {
+      margin-top: 18px;
+      color: var(--soft);
+      max-width: 520px;
+    }
+
+    .skill-orbit {
+      position: relative;
+      width: 230px;
+      height: 230px;
+      margin: 34px auto 0;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(97, 233, 255, 0.16);
+      background: radial-gradient(circle, rgba(97, 233, 255, 0.12), transparent 68%);
+      animation: softSpin 15s linear infinite;
+    }
+
+    .skill-orbit::before,
+    .skill-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+      border: 1px dashed rgba(255, 255, 255, 0.16);
+    }
+
+    .skill-orbit::before { inset: 28px; }
+    .skill-orbit::after { inset: 58px; }
+
+    .skill-orbit b {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-head);
+      color: white;
+      letter-spacing: -0.04em;
+      animation: reverseSpin 15s linear infinite;
+    }
+
+    @keyframes softSpin { to { transform: rotate(360deg); } }
+    @keyframes reverseSpin { to { transform: rotate(-360deg); } }
+
+    .skill-list-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      min-height: 170px;
+      padding: 24px;
+      overflow: hidden;
+      transition: transform 0.32s var(--ease), border-color 0.32s var(--ease), box-shadow 0.32s var(--ease);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--line-strong);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .skill-card .skill-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      background: rgba(97, 233, 255, 0.10);
+      border: 1px solid rgba(97, 233, 255, 0.16);
+      font-size: 1.25rem;
+    }
+
+    .skill-card h3 {
+      color: white;
+      margin-bottom: 8px;
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      letter-spacing: -0.04em;
+    }
+
+    .skill-card p {
+      color: var(--soft);
+      font-size: 0.92rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .skill-tags span {
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+
+    /* ------------------- Signature scroll 3D section ------------------- */
+
+
+    .motion-lab {
+      min-height: 260vh;
+      padding: 0;
+    }
+
+    .motion-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .motion-bg-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255, 255, 255, 0.035);
+      font-family: var(--font-head);
+      font-size: clamp(5rem, 18vw, 16rem);
+      font-weight: 800;
+      letter-spacing: -0.1em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .motion-content {
+      width: min(var(--max), calc(100% - 40px));
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 44px;
+      align-items: center;
+      perspective: 1200px;
+    }
+
+    .motion-copy {
+      transform: translateY(calc(var(--p, 0) * -28px));
+    }
+
+    .motion-copy .lead {
+      margin-top: 16px;
+    }
+
+    .motion-stage {
+      position: relative;
+      height: 520px;
+      transform-style: preserve-3d;
+    }
+
+    .motion-card {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(330px, 82vw);
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      transition: border-color 0.25s var(--ease);
+    }
+
+    .motion-card:hover {
+      border-color: var(--line-strong);
+    }
+
+    .motion-card b {
+      display: block;
+      margin: 10px 0 8px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      letter-spacing: -0.04em;
+    }
+
+    .motion-card span {
+      color: var(--soft);
+      font-size: 0.9rem;
+    }
+
+    .motion-card:nth-child(1) {
+      transform:
+        translate(-50%, -50%)
+        translateX(calc(-260px + var(--p, 0) * 170px))
+        translateY(calc(-90px + var(--p, 0) * -20px))
+        translateZ(calc(40px + var(--p, 0) * 90px))
+        rotateY(calc(-24deg + var(--p, 0) * 32deg))
+        rotateX(8deg);
+    }
+
+    .motion-card:nth-child(2) {
+      transform:
+        translate(-50%, -50%)
+        translateX(calc(20px + var(--p, 0) * -110px))
+        translateY(calc(-10px + var(--p, 0) * -80px))
+        translateZ(calc(120px + var(--p, 0) * 40px))
+        rotateY(calc(10deg + var(--p, 0) * -18deg))
+        rotateX(-4deg);
+    }
+
+    .motion-card:nth-child(3) {
+      transform:
+        translate(-50%, -50%)
+        translateX(calc(250px + var(--p, 0) * -170px))
+        translateY(calc(80px + var(--p, 0) * 28px))
+        translateZ(calc(10px + var(--p, 0) * 100px))
+        rotateY(calc(26deg + var(--p, 0) * -36deg))
+        rotateX(-7deg);
+    }
+
+    .motion-line {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: 42px;
+      height: 3px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .motion-line span {
+      display: block;
+      width: calc(var(--p, 0) * 100%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      box-shadow: 0 0 22px rgba(97, 233, 255, 0.7);
+    }
+
+    /* ------------------- Process ------------------- */
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .process-card {
+      padding: 26px;
+    }
+
+    .process-card .num {
+      color: rgba(97, 233, 255, 0.22);
+      font-family: var(--font-head);
+      font-size: 3.2rem;
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .process-card h3 {
+      margin: 20px 0 10px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .process-card p {
+      color: var(--soft);
+      font-size: 0.9rem;
+    }
+
+    /* ------------------- Contact ------------------- */
+
+    .contact-shell {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-copy,
+    .contact-form {
+      padding: 34px;
+    }
+
+    .contact-copy h2 {
+      margin-bottom: 18px;
+    }
+
+    .contact-copy p {
+      color: var(--soft);
+      margin-bottom: 24px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--soft);
+    }
+
+    .contact-row .mini-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(97, 233, 255, 0.09);
+      border: 1px solid rgba(97, 233, 255, 0.16);
+    }
+
+    .field {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      color: var(--soft);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      color: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      outline: none;
+      padding: 14px 16px;
+      transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+    }
+
+    textarea {
+      min-height: 126px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    footer {
+      padding: 34px 0 42px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    /* ------------------- Modal: no reload detail view ------------------- */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(18px);
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-panel {
+      width: min(720px, 100%);
+      padding: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at top right, rgba(97, 233, 255, 0.14), transparent 40%),
+        rgba(8, 12, 26, 0.92);
+      box-shadow: var(--shadow);
+      animation: modalIn 0.45s var(--ease) both;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.96) rotateX(10deg); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .modal-panel h3 {
+      margin-bottom: 12px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      letter-spacing: -0.06em;
+    }
+
+    .modal-panel p {
+      color: var(--soft);
+      margin-bottom: 18px;
+    }
+
+    .modal-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .modal-list span {
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-close {
+      min-width: 130px;
+    }
+
+    /* ------------------- Reveal and pointer spotlight ------------------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+
+    .spotlight {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(97, 233, 255, 0.10), transparent 24rem);
+    }
+
+
+    /* ------------------- Performance fixes ------------------- */
+
+    /* Helps the browser skip painting sections until they are near the screen. */
+    .section {
+      content-visibility: auto;
+      contain-intrinsic-size: 760px;
+    }
+
+    /* Keep the hero always visible because it is the first screen. */
+    .hero {
+      content-visibility: visible;
+    }
+
+    /* ------------------- Responsive ------------------- */
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .skills-grid,
+      .motion-content,
+      .contact-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .stage-wrap {
+        min-height: 480px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-top {
+        display: block;
+      }
+
+      .section-top .lead {
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        top: 78px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(5, 7, 18, 0.94);
+        backdrop-filter: blur(22px);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.7rem, 15vw, 4.6rem);
+      }
+
+      .stage-wrap {
+        min-height: 420px;
+      }
+
+      .orbit {
+        inset: 42px;
+      }
+
+      .cube {
+        width: 128px;
+        height: 128px;
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(64px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(64px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(64px); }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(64px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(64px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(64px); }
+
+      .float-card {
+        width: 158px;
+        padding: 13px;
+      }
+
+      .micro-trust,
+      .identity-grid,
+      .services-grid,
+      .skill-list-grid,
+      .process-grid,
+      .form-actions,
+      .modal-list {
+        grid-template-columns: 1fr;
+      }
+
+      .motion-lab {
+        min-height: auto;
+        padding: 90px 0;
+      }
+
+      .motion-sticky {
+        position: relative;
+        height: auto;
+      }
+
+      .motion-stage {
+        height: auto;
+        display: grid;
+        gap: 16px;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        transform: none;
+      }
+
+      .motion-bg-title,
+      .motion-line {
+        display: none;
+      }
+    }
+
+
+    /* Phone / old-device optimization:
+       On mobile we keep the premium look, but remove heavy effects that can cause lag. */
+    @media (max-width: 760px) {
+      body {
+        background:
+          radial-gradient(circle at top, rgba(77, 124, 255, 0.16), transparent 28rem),
+          var(--bg);
+      }
+
+      body::before {
+        display: none;
+      }
+
+      body::after {
+        font-size: 10rem;
+        opacity: 0.55;
+      }
+
+      .spotlight {
+        display: none;
+      }
+
+      .section {
+        padding: 78px 0;
+        content-visibility: visible;
+      }
+
+      .glass-card,
+      .nav,
+      .nav-links,
+      .modal,
+      .modal-panel,
+      .cube-face,
+      .motion-card {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.075);
+      }
+
+      .stage-wrap {
+        min-height: 300px;
+      }
+
+      .stage-glow,
+      .orbit,
+      .float-card {
+        display: none;
+      }
+
+      .cube {
+        width: 118px;
+        height: 118px;
+        animation: none !important;
+        transform: translate(-50%, -50%) rotateX(-14deg) rotateY(28deg);
+      }
+
+      .cube-face {
+        font-size: 1rem;
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(59px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(59px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(59px); }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(59px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(59px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(59px); }
+
+      .service-card,
+      .skill-card,
+      .process-card,
+      .identity-box {
+        will-change: auto;
+        transform: none !important;
+      }
+
+      .service-card.reveal.show {
+        animation: none;
+      }
+
+      .service-card:hover,
+      .skill-card:hover,
+      .btn:hover {
+        transform: none;
+      }
+
+      .skill-orbit {
+        animation: none !important;
+      }
+
+      .skill-orbit b {
+        animation: none !important;
+      }
+
+      .qr-scan-line {
+        animation-duration: 3.6s;
+      }
+
+      .motion-copy {
+        transform: none;
+      }
+
+      .motion-card {
+        box-shadow: 0 16px 45px rgba(0, 0, 0, 0.26);
+      }
+
+      .reveal {
+        transition-duration: 0.45s;
+      }
+    }
+
+
+
+    /* =========================================================
+       FINAL PHONE FIX — light 3D + full content visibility
+       This keeps mobile smooth but does not remove all 3D vibe.
+       ========================================================= */
+    @media (max-width: 760px) {
+      /* Important: on phones content should never stay hidden if JS/network is slow. */
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      /* Keep a small 3D hero instead of hiding everything. */
+      .stage-wrap {
+        min-height: 370px;
+        perspective: 900px;
+        transform-style: preserve-3d;
+      }
+
+      .stage-glow,
+      .orbit,
+      .float-card {
+        display: block !important;
+      }
+
+      .stage-glow {
+        inset: 22%;
+        opacity: 0.75;
+        filter: blur(10px);
+        animation: breathe 5.5s ease-in-out infinite alternate;
+      }
+
+      .orbit {
+        inset: 74px 42px;
+        opacity: 0.55;
+        animation: orbitSpin 28s linear infinite;
+      }
+
+      .cube {
+        width: 118px;
+        height: 118px;
+        animation: cubeSpin 16s linear infinite !important;
+        will-change: transform;
+      }
+
+      .cube-face {
+        font-size: 0.95rem;
+        background: linear-gradient(135deg, rgba(97, 233, 255, 0.16), rgba(166, 108, 255, 0.09));
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(59px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(59px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(59px); }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(59px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(59px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(59px); }
+
+      .float-card {
+        width: 132px;
+        padding: 11px 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.085);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        will-change: transform;
+      }
+
+      .float-card b { font-size: 0.78rem; }
+      .float-card span { font-size: 0.67rem; }
+
+      .float-card.one {
+        left: 0;
+        top: 26px;
+        animation: phoneFloatOne 6s ease-in-out infinite;
+      }
+
+      .float-card.two {
+        right: 0;
+        top: 88px;
+        animation: phoneFloatTwo 6.4s ease-in-out infinite;
+      }
+
+      .float-card.three {
+        left: 8px;
+        bottom: 78px;
+        animation: phoneFloatThree 6.8s ease-in-out infinite;
+      }
+
+      .float-card.four {
+        right: 10px;
+        bottom: 30px;
+        animation: phoneFloatFour 7.2s ease-in-out infinite;
+      }
+
+      /* Keep the flow section visible and premium on phone, without heavy scroll math. */
+      .motion-bg-title {
+        display: block !important;
+        font-size: 4.6rem;
+        opacity: 0.045;
+      }
+
+      .motion-line {
+        display: block !important;
+        top: 52%;
+        opacity: 0.35;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        transform: none !important;
+        animation: phoneSoftLift 5.8s ease-in-out infinite;
+      }
+
+      .motion-card:nth-child(2) { animation-delay: 0.5s; }
+      .motion-card:nth-child(3) { animation-delay: 1s; }
+
+      .service-card {
+        min-height: auto;
+      }
+    }
+
+    @keyframes phoneFloatOne {
+      0%, 100% { transform: rotateY(-12deg) rotateX(6deg) translate3d(0, 0, 45px); }
+      50% { transform: rotateY(-12deg) rotateX(6deg) translate3d(8px, -12px, 58px); }
+    }
+
+    @keyframes phoneFloatTwo {
+      0%, 100% { transform: rotateY(14deg) rotateX(-5deg) translate3d(0, 0, 52px); }
+      50% { transform: rotateY(14deg) rotateX(-5deg) translate3d(-10px, 10px, 65px); }
+    }
+
+    @keyframes phoneFloatThree {
+      0%, 100% { transform: rotateY(12deg) rotateX(5deg) translate3d(0, 0, 48px); }
+      50% { transform: rotateY(12deg) rotateX(5deg) translate3d(9px, 10px, 62px); }
+    }
+
+    @keyframes phoneFloatFour {
+      0%, 100% { transform: rotateY(-14deg) rotateX(-4deg) translate3d(0, 0, 45px); }
+      50% { transform: rotateY(-14deg) rotateX(-4deg) translate3d(-9px, -10px, 60px); }
+    }
+
+    @keyframes phoneSoftLift {
+      0%, 100% { transform: translateY(0) !important; }
+      50% { transform: translateY(-8px) !important; }
+    }
+
+
+
+
+    /* =========================================================
+       MOBILE REAL 3D FIX
+       These rules keep the phone version smooth but make the 3D
+       visible in the exact sections people see while scrolling.
+       ========================================================= */
+    @media (max-width: 760px) {
+      body {
+        background:
+          radial-gradient(circle at 20% 4%, rgba(97, 233, 255, 0.18), transparent 24rem),
+          radial-gradient(circle at 90% 22%, rgba(166, 108, 255, 0.16), transparent 24rem),
+          radial-gradient(circle at 40% 92%, rgba(77, 124, 255, 0.14), transparent 24rem),
+          var(--bg);
+      }
+
+      .hero-grid,
+      .services-grid,
+      .process-grid,
+      .motion-stage {
+        perspective: 900px;
+        transform-style: preserve-3d;
+      }
+
+      /* Hero 3D should be obvious on phone, not hidden or flat. */
+      .stage-wrap {
+        min-height: 430px !important;
+        transform: rotateX(8deg) rotateY(-7deg);
+        animation: mobileStageBreath 7s ease-in-out infinite;
+      }
+
+      .cube {
+        width: 132px !important;
+        height: 132px !important;
+        filter: drop-shadow(0 26px 42px rgba(97, 233, 255, 0.20));
+      }
+
+      .cube-face:nth-child(1) { transform: translateZ(66px) !important; }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(66px) !important; }
+      .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(66px) !important; }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(66px) !important; }
+
+      .orbit {
+        inset: 62px 28px !important;
+        opacity: 0.8 !important;
+      }
+
+      .float-card.one { transform: rotateY(-26deg) rotateX(10deg) translate3d(0, 0, 76px) !important; }
+      .float-card.two { transform: rotateY(24deg) rotateX(-8deg) translate3d(0, 0, 88px) !important; }
+      .float-card.three { transform: rotateY(20deg) rotateX(10deg) translate3d(0, 0, 72px) !important; }
+      .float-card.four { transform: rotateY(-24deg) rotateX(-8deg) translate3d(0, 0, 78px) !important; }
+
+      /* Services: keep cards usable, but add visible depth. */
+      .service-card {
+        transform-style: preserve-3d !important;
+        box-shadow:
+          0 18px 42px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .service-card:nth-child(odd) {
+        transform: perspective(850px) rotateY(-4deg) rotateX(2deg) translateZ(0) !important;
+      }
+
+      .service-card:nth-child(even) {
+        transform: perspective(850px) rotateY(4deg) rotateX(2deg) translateZ(0) !important;
+      }
+
+      .service-card::after {
+        opacity: 0.55 !important;
+      }
+
+      .service-top,
+      .service-card h3,
+      .service-card p,
+      .click-note {
+        transform: translateZ(22px) !important;
+      }
+
+      /* QR should look premium but same size as other services. */
+      .qr-mini {
+        transform: translateZ(34px) rotateX(4deg);
+        box-shadow: 0 18px 35px rgba(97, 233, 255, 0.12);
+      }
+
+      /* The Smart Website Flow section now moves with scroll on phone too. */
+      .motion-lab {
+        min-height: 1180px !important;
+      }
+
+      .motion-sticky {
+        position: sticky !important;
+        top: 74px !important;
+        min-height: 720px !important;
+        overflow: hidden;
+      }
+
+      .motion-content {
+        display: block !important;
+        padding-top: 34px;
+      }
+
+      .motion-copy {
+        transform: translateY(calc(var(--p, 0) * -26px)) !important;
+      }
+
+      .motion-stage {
+        height: 420px !important;
+        margin-top: 26px;
+      }
+
+      .motion-card,
+      .motion-card:nth-child(1),
+      .motion-card:nth-child(2),
+      .motion-card:nth-child(3) {
+        width: min(300px, 82vw) !important;
+        left: 50% !important;
+        top: 50% !important;
+        animation: none !important;
+        box-shadow:
+          0 25px 55px rgba(0, 0, 0, 0.42),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        background: rgba(255, 255, 255, 0.075) !important;
+        border-color: rgba(97, 233, 255, 0.18) !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+      }
+
+      .motion-card:nth-child(1) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(-54px + var(--p, 0) * 36px))
+          translateY(calc(-122px + var(--p, 0) * -22px))
+          translateZ(calc(35px + var(--p, 0) * 45px))
+          rotateY(calc(-18deg + var(--p, 0) * 18deg))
+          rotateX(8deg) !important;
+      }
+
+      .motion-card:nth-child(2) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(14px + var(--p, 0) * -28px))
+          translateY(calc(2px + var(--p, 0) * -34px))
+          translateZ(calc(95px + var(--p, 0) * 42px))
+          rotateY(calc(8deg + var(--p, 0) * -16deg))
+          rotateX(-4deg) !important;
+      }
+
+      .motion-card:nth-child(3) {
+        transform:
+          translate(-50%, -50%)
+          translateX(calc(58px + var(--p, 0) * -38px))
+          translateY(calc(126px + var(--p, 0) * 18px))
+          translateZ(calc(30px + var(--p, 0) * 40px))
+          rotateY(calc(18deg + var(--p, 0) * -18deg))
+          rotateX(-7deg) !important;
+      }
+
+      .motion-line {
+        display: block !important;
+        bottom: 28px !important;
+        top: auto !important;
+        opacity: 0.8 !important;
+      }
+
+      .motion-line span {
+        width: calc(var(--p, 0) * 100%) !important;
+      }
+
+      /* Process cards in screenshot should not look flat. */
+      .process-grid {
+        perspective: 850px !important;
+      }
+
+      .process-card {
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d !important;
+        box-shadow:
+          0 20px 44px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      }
+
+      .process-card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(120deg, transparent 16%, rgba(97, 233, 255, 0.18), transparent 42%);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .process-card:nth-child(odd) {
+        transform: perspective(850px) rotateY(-4deg) rotateX(2deg) !important;
+      }
+
+      .process-card:nth-child(even) {
+        transform: perspective(850px) rotateY(4deg) rotateX(2deg) !important;
+      }
+
+      .process-card .num,
+      .process-card h3,
+      .process-card p {
+        position: relative;
+        z-index: 1;
+        transform: translateZ(20px);
+      }
+    }
+
+    @keyframes mobileStageBreath {
+      0%, 100% { transform: rotateX(8deg) rotateY(-7deg) translateY(0); }
+      50% { transform: rotateX(4deg) rotateY(7deg) translateY(-8px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="nav">
+      <a class="brand" href="#home" aria-label="Lalit Web Studio home">
+        <span class="brand-mark">LW</span>
+        <span>Lalit Web Studio</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#skills">Skills</a>
+        <a href="#process">Process</a>
+        <a class="nav-cta" href="#contact">Start Project</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          <div>
+            <div class="status-pill reveal">
+              <span class="live-dot"></span>
+              Modern websites for local businesses
+            </div>
+
+            <div class="portfolio-badge reveal">Lalit Web Studio</div>
+
+            <h1 class="reveal">
+              <span class="small-line">Lalit Pokhriya</span>
+              Lalit <span class="gradient-text">Web Studio</span>
+            </h1>
+
+            <p class="hero-text reveal">
+              I build modern, mobile-friendly websites for local businesses and service brands that want to look professional, build trust, and turn visitors into real enquiries.
+            </p>
+
+            <div class="hero-actions reveal">
+              <a class="btn btn-primary" href="#contact">Start a Website ↗</a>
+              <a class="btn btn-secondary" href="#services">View Services</a>
+            </div>
+
+            <div class="micro-trust reveal">
+              <div class="micro-card">
+                <b>Mobile-first</b>
+                <span>Looks good on phones</span>
+              </div>
+              <div class="micro-card">
+                <b>Fast loading</b>
+                <span>Lightweight static site</span>
+              </div>
+              <div class="micro-card">
+                <b>Client-focused</b>
+                <span>Clear message + CTA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage-wrap reveal" aria-label="3D web studio visual">
+            <div class="stage-glow"></div>
+            <div class="orbit"></div>
+
+            <div class="cube" aria-hidden="true">
+              <div class="cube-face">Web</div>
+              <div class="cube-face">Brand</div>
+              <div class="cube-face">Trust</div>
+              <div class="cube-face">LWS</div>
+              <div class="cube-face">SEO</div>
+              <div class="cube-face">UX</div>
+            </div>
+
+            <div class="float-card one">
+              <b>Portfolio Identity</b>
+              <span>A sharp first impression</span>
+            </div>
+            <div class="float-card two">
+              <b>Business Websites</b>
+              <span>Trust, calls and enquiries</span>
+            </div>
+            <div class="float-card three">
+              <b>Brand Presence</b>
+              <span>Clear story and services</span>
+            </div>
+            <div class="float-card four">
+              <b>Smart Features</b>
+              <span>WhatsApp, maps and forms</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">About</p>
+              <h2 class="title reveal">A focused web studio with a <span>clear business purpose.</span></h2>
+            </div>
+            <p class="lead reveal">
+              Lalit Web Studio helps small businesses build a clean, trustworthy and easy-to-contact online presence.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-card glass-card reveal">
+              <h3>What I actually do</h3>
+              <p>
+                I create websites that explain your business clearly, present your services properly, and make it easy for customers to contact you.
+              </p>
+              <p>
+                The goal is simple: make your business look trustworthy, easy to understand and easy to contact.
+              </p>
+            </div>
+
+            <div class="identity-grid reveal">
+              <div class="identity-box glass-card">
+                <span class="icon">🧭</span>
+                <div>
+                  <b>Clear positioning</b>
+                  <span>Your website should tell people what you do in 5 seconds.</span>
+                </div>
+              </div>
+
+              <div class="identity-box glass-card">
+                <span class="icon">⚡</span>
+                <div>
+                  <b>Fast experience</b>
+                  <span>Modern visuals without making the website heavy.</span>
+                </div>
+              </div>
+
+              <div class="identity-box glass-card">
+                <span class="icon">📱</span>
+                <div>
+                  <b>Phone friendly</b>
+                  <span>Most local customers open websites on mobile first.</span>
+                </div>
+              </div>
+
+              <div class="identity-box glass-card">
+                <span class="icon">🎯</span>
+                <div>
+                  <b>Action focused</b>
+                  <span>WhatsApp, call, form, maps and useful CTAs.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">Services</p>
+              <h2 class="title reveal">Only the work I can actually deliver <span>properly.</span></h2>
+            </div>
+            <p class="lead reveal">
+              Clear, mobile-friendly websites for local brands, service providers and growing businesses — with smart contact buttons, QR access and clean content.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <button class="service-card glass-card reveal" style="--delay: 0ms" data-service="business">
+              <span class="service-top">
+                <span class="service-number">01</span>
+                <span class="service-icon">🏢</span>
+              </span>
+              <h3>Business Website</h3>
+              <p>A clean website for shops, gyms, salons, clinics, institutes and service providers who need a professional online identity.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card reveal" style="--delay: 90ms" data-service="lead">
+              <span class="service-top">
+                <span class="service-number">02</span>
+                <span class="service-icon">📞</span>
+              </span>
+              <h3>Lead & Contact Page</h3>
+              <p>A focused landing page that guides visitors toward WhatsApp, calls, forms, Google Maps and real enquiries.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card qr-service-card reveal" style="--delay: 180ms" data-service="qr">
+              <span class="service-top">
+                <span class="service-number">03</span>
+                <span class="service-icon">▦</span>
+              </span>
+              <h3>QR Smart Website</h3>
+              <p>A scan-to-open website page for posters, shop counters, business cards and catalogs. Customers scan the QR and instantly open your website, contact button, location or latest offer.</p>
+
+              <div class="qr-mini" aria-hidden="true">
+                <div class="qr-mini-grid">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <span class="qr-scan-line"></span>
+              </div>
+
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card reveal" style="--delay: 270ms" data-service="catalog">
+              <span class="service-top">
+                <span class="service-number">04</span>
+                <span class="service-icon">🧾</span>
+              </span>
+              <h3>Product / Service Catalog</h3>
+              <p>Show services, packages, prices, photos or offers in a neat digital catalog that is easy to share with customers.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+
+            <button class="service-card glass-card reveal" style="--delay: 360ms" data-service="redesign">
+              <span class="service-top">
+                <span class="service-number">05</span>
+                <span class="service-icon">🛠️</span>
+              </span>
+              <h3>Website Redesign</h3>
+              <p>Already have a website? I can make it cleaner, faster, mobile-friendly and easier for customers to understand.</p>
+              <span class="click-note">Open detail →</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">Skills</p>
+              <h2 class="title reveal">Skills behind the <span>Lalit Web Studio</span> work.</h2>
+            </div>
+            <p class="lead reveal">
+              I focus on practical skills that help me build clean, responsive and client-ready websites — not just pretty screens.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-focus-card glass-card reveal">
+              <div>
+                <h3>Design sense + code + Python + AI tools, used together.</h3>
+                <p>
+                  My strength is creating simple business websites with clear content, smooth UI, mobile layout, Python + AI tools and direct action buttons.
+                </p>
+              </div>
+
+              <div class="skill-orbit" aria-hidden="true">
+                <b>LWS Skills</b>
+              </div>
+
+              <div class="skill-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Python + AI</span>
+                <span>Responsive Design</span>
+                <span>AI Tools</span>
+                <span>QR Pages</span>
+                <span>WhatsApp Links</span>
+                <span>Basic SEO</span>
+              </div>
+            </div>
+
+            <div class="skill-list-grid">
+              <div class="skill-card glass-card reveal" style="--delay: 0ms">
+                <span class="skill-icon">🧱</span>
+                <h3>HTML Structure</h3>
+                <p>Clean page sections, proper content flow and simple structure that is easy to understand and update.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 80ms">
+                <span class="skill-icon">🎨</span>
+                <h3>CSS Design & Animation</h3>
+                <p>Modern cards, glass effects, hover animation, spacing, typography and responsive layouts.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 160ms">
+                <span class="skill-icon">⚙️</span>
+                <h3>JavaScript Interactions</h3>
+                <p>Buttons, popups, smooth scroll, WhatsApp form messages and small interactive website features.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 240ms">
+                <span class="skill-icon">🐍</span>
+                <h3>Python + AI</h3>
+                <p>Python for logic building, small automation ideas, data handling and AI-assisted planning for better website workflows.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 320ms">
+                <span class="skill-icon">📱</span>
+                <h3>Mobile-First Design</h3>
+                <p>Layouts that look clean on phones first, because most local customers open websites on mobile.</p>
+              </div>
+
+              <div class="skill-card glass-card reveal" style="--delay: 400ms">
+                <span class="skill-icon">🚀</span>
+                <h3>AI Tools, SEO & Performance</h3>
+                <p>AI-assisted planning, readable content, meta tags, fast static pages and simple hosting-ready structure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3D Scroll Flow -->
+      <section class="motion-lab" id="motion">
+        <div class="motion-sticky">
+          <div class="motion-bg-title">LWS FLOW</div>
+
+          <div class="motion-content">
+            <div class="motion-copy">
+              <p class="eyebrow">Smart Website Flow</p>
+              <h2 class="title">A smooth journey that helps visitors <span>understand and trust.</span></h2>
+              <p class="lead">
+                A good website guides visitors smoothly — first they understand your business, then they trust your brand, and finally they contact you.
+              </p>
+            </div>
+
+            <div class="motion-stage">
+              <div class="motion-card">
+                <span>01</span>
+                <b>Understand</b>
+                <span>Your business, target customers, main services and trust points.</span>
+              </div>
+
+              <div class="motion-card">
+                <span>02</span>
+                <b>Design</b>
+                <span>Clear layout, readable content, strong sections and mobile-first experience.</span>
+              </div>
+
+              <div class="motion-card">
+                <span>03</span>
+                <b>Launch</b>
+                <span>WhatsApp, enquiry buttons, Google Maps, basic SEO and launch-ready setup.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="motion-line"><span></span></div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="section" id="process">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="eyebrow reveal">Process</p>
+              <h2 class="title reveal">Simple process. <span>No confusion for clients.</span></h2>
+            </div>
+            <p class="lead reveal">
+              You get a simple step-by-step process, clear communication and a website that supports real business goals.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <div class="process-card glass-card reveal">
+              <div class="num">01</div>
+              <h3>Business Discussion</h3>
+              <p>Understand your services, photos, location, offers and the main action customers should take.</p>
+            </div>
+
+            <div class="process-card glass-card reveal">
+              <div class="num">02</div>
+              <h3>Website Design</h3>
+              <p>Create a clean design with clear content, smooth sections and modern visual feel.</p>
+            </div>
+
+            <div class="process-card glass-card reveal">
+              <div class="num">03</div>
+              <h3>Smart Setup</h3>
+              <p>Add WhatsApp, enquiry form, map, useful CTAs, basic SEO and mobile optimization.</p>
+            </div>
+
+            <div class="process-card glass-card reveal">
+              <div class="num">04</div>
+              <h3>Launch & Support</h3>
+              <p>Publish the website and help with small changes when business details change.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section" id="contact">
+        <div class="container contact-shell">
+          <div class="contact-copy glass-card reveal">
+            <p class="eyebrow">Contact</p>
+            <h2 class="title">Let’s build a website people <span>remember.</span></h2>
+            <p>
+              Share your business details and I’ll help plan a clean website structure with the right sections and features.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/919259350982" target="_blank" rel="noopener">WhatsApp Me</a>
+              <a class="btn btn-secondary" href="mailto:lalitpokhriya2006@gmail.com">Email Me</a>
+            </div>
+
+            <div class="contact-list">
+              <div class="contact-row">
+                <span class="mini-icon">📍</span>
+                <span>Uttarakhand, India</span>
+              </div>
+              <div class="contact-row">
+                <span class="mini-icon">🎓</span>
+                <span>BCA AI-DS, Graphic Era Hill University Bhimtal</span>
+              </div>
+              <div class="contact-row">
+                <span class="mini-icon">💼</span>
+                <span>Business websites, QR pages and digital web presence</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form glass-card reveal">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" type="text" placeholder="Enter your name" />
+            </div>
+
+            <div class="field">
+              <label for="business">Business / work type</label>
+              <input id="business" type="text" placeholder="Shop, salon, gym, clinic, institute, service, etc." />
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me what kind of website you need..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" id="sendWhatsapp">Send on WhatsApp</button>
+              <a class="btn btn-secondary" href="#services">View Services</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        © 2026 <strong>Lalit Pokhriya</strong>. All rights reserved. Designed &amp; built for Lalit Web Studio.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Service detail modal -->
+  <div class="modal" id="serviceModal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Service Title</h3>
+      <p id="modalText">Service text</p>
+
+      <div class="modal-list" id="modalList"></div>
+
+      <button class="btn btn-primary modal-close" id="closeModal">Back</button>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       Simple JavaScript for animations and interactions.
+       ========================================================= */
+
+    const navLinks = document.getElementById("navLinks");
+    const menuBtn = document.getElementById("menuBtn");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    // Heavy pointer effects run only on laptop/desktop.
+    // This keeps the site smoother on phones and old devices.
+    const desktopMotion = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 761px)").matches;
+
+    /* Mouse spotlight */
+    if (desktopMotion) {
+      window.addEventListener("pointermove", (event) => {
+        document.documentElement.style.setProperty("--mx", event.clientX + "px");
+        document.documentElement.style.setProperty("--my", event.clientY + "px");
+      }, { passive: true });
+    }
+
+    /* Reveal on scroll */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    /* Card glow follows mouse inside each card */
+    if (desktopMotion) {
+      document.querySelectorAll(".glass-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+
+          card.style.setProperty("--x", x + "px");
+          card.style.setProperty("--y", y + "px");
+        }, { passive: true });
+      });
+    }
+
+    /* 3D tilt for service cards */
+    if (desktopMotion) {
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+          const y = (event.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+          card.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-6px)`;
+        }, { passive: true });
+
+        card.addEventListener("pointerleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
+
+    /* Hero 3D parallax */
+    const stage = document.querySelector(".stage-wrap");
+    const cube = document.querySelector(".cube");
+    const floats = document.querySelectorAll(".float-card");
+
+    if (desktopMotion) {
+      window.addEventListener("pointermove", (event) => {
+        if (!stage) return;
+
+        const x = event.clientX / window.innerWidth - 0.5;
+        const y = event.clientY / window.innerHeight - 0.5;
+
+        stage.style.transform = `rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
+        cube.style.marginLeft = x * 16 + "px";
+        cube.style.marginTop = y * 16 + "px";
+
+        floats.forEach((card, index) => {
+          const power = (index + 1) * 7;
+          card.style.marginLeft = x * power + "px";
+          card.style.marginTop = y * power + "px";
+        });
+      }, { passive: true });
+    }
+
+    /* Scroll-based 3D flow progress */
+    const motionSection = document.querySelector(".motion-lab");
+
+    function updateMotionProgress() {
+      if (!motionSection) return;
+
+      const rect = motionSection.getBoundingClientRect();
+      const scrollable = Math.max(1, rect.height - window.innerHeight);
       const rawProgress = Math.abs(rect.top) / scrollable;
       const progress = Math.min(1, Math.max(0, rawProgress));
 
